@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="百味滷製冷凍滷味組合包，專為酒吧、KTV、餐酒館設計。百種辛香料慢滷，沒有廚師也能賣滷味：加熱 3 分鐘上桌，為菜單多一道高毛利下酒菜，無最低訂購量。">
+<!-- ===== Meta Pixel：到 Meta 事件管理工具複製你的 Pixel 程式碼，貼在這裡 ===== -->
+<title>百味滷製 店家合作</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&display=swap">
+<style>
+/* Layout: 夜間酒吧吧檯 — 深色長頁，左文右圖的 hero，價格以帳單式欄位呈現，底部固定 CTA */
+.val,.big b,.bill,.price b,.stamp b,.trust .num,.step .n{font-variant-numeric:lining-nums tabular-nums}
+:root{
+  --ink:#131110;        /* 頁面底色：吧檯暗面 */
+  --soot:#1c1916;       /* 區塊底色 */
+  --slate:#26221e;      /* 卡片底色：石板 */
+  --line:#3a342d;       /* 細線 */
+  --cream:#ecd4b0;      /* 品牌米金：同 logo 字色 */
+  --braise:#c07a3f;     /* 滷汁琥珀：強調色 */
+  --text:#efe7dc;
+  --muted:#b3a593;
+  --display:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --num:"Cormorant Garamond","Noto Serif TC",Georgia,serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--ink);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.75;margin:0;padding-bottom:84px}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;font-weight:700;letter-spacing:.02em}
+h2{font-size:clamp(26px,4.4vw,38px);line-height:1.3;color:var(--cream)}
+p{margin:0}
+.eyebrow{font-size:13px;letter-spacing:.24em;color:var(--braise);font-weight:500}
+section{padding-block:72px}
+.sec-head{display:grid;gap:12px;margin-bottom:36px;max-width:640px}
+.sec-head p{color:var(--muted)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+.btn-line{background:#06c755;color:#fff}
+.btn-ghost{border-color:var(--cream);color:var(--cream);background:transparent}
+.btn-ghost:hover{background:rgba(236,212,176,.08)}
+
+/* hero */
+.hero{padding-block:40px 64px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.brand{display:flex;align-items:baseline;gap:12px;margin-bottom:40px}
+.brand b{font-family:var(--display);font-size:22px;color:var(--cream);letter-spacing:.18em}
+.brand span{font-family:var(--num);font-style:italic;color:var(--muted);font-size:15px}
+.hero h1{font-size:clamp(40px,7vw,72px);line-height:1.15;color:var(--cream);font-weight:900}
+.hero h1 em{font-style:normal;color:var(--braise)}
+.hero .lede{margin-top:20px;font-size:18px;color:var(--text);max-width:30em}
+.hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--muted)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-img{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;max-width:100%}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.stamp{position:absolute;left:16px;bottom:16px;background:rgba(19,17,16,.82);border:1px solid var(--line);padding:10px 14px;border-radius:4px;display:grid;line-height:1.3}
+.stamp b{font-family:var(--num);font-size:34px;color:var(--cream);font-weight:600}
+.stamp span{font-size:13px;color:var(--muted)}
+
+/* story */
+.story{background:var(--soot)}
+.story .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.story .big100{font-family:var(--num);font-size:clamp(96px,16vw,180px);line-height:.85;font-variant-numeric:lining-nums;color:var(--cream);font-weight:600}
+.story .big100 small{display:block;font-family:var(--display);font-size:18px;color:var(--braise);letter-spacing:.3em;margin-top:14px}
+.story-body{display:grid;gap:16px}
+.story-body p{color:var(--muted)}
+.story-body p.lead{font-size:19px;color:var(--text)}
+.spices{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.spices span{font-size:13px;color:var(--cream);border:1px solid var(--line);border-radius:999px;padding:3px 12px}
+
+/* pain */
+.pain{background:var(--soot)}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.pain-grid div{background:var(--soot);padding:28px 24px;display:grid;gap:10px;align-content:start}
+.pain-grid h3{font-size:19px;color:var(--text)}
+.pain-grid .q{font-size:14px;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--braise)}
+.pain-grid p:last-child{color:var(--muted);font-size:15px}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.step{border-top:2px solid var(--braise);padding-top:16px;display:grid;gap:6px;align-content:start}
+.step .n{font-family:var(--num);font-size:15px;color:var(--braise);letter-spacing:.1em}
+.step h3{font-size:20px;color:var(--cream)}
+.step p{color:var(--muted);font-size:15px}
+.step.hot h3{color:var(--braise)}
+.flow-note{margin-top:24px;font-size:14px;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+/* calculator */
+.calc{background:var(--ink)}
+.calc-box{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.calc-in{padding:28px;display:grid;gap:22px;background:var(--slate)}
+.calc-out{padding:28px;display:grid;gap:18px;align-content:center}
+label{font-size:14px;color:var(--muted);display:block;margin-bottom:8px}
+select,input[type=number]{width:100%;background:var(--ink);color:var(--text);border:1px solid var(--line);border-radius:4px;font:inherit;padding:10px 12px;min-height:46px}
+select:focus-visible,input:focus-visible{outline:2px solid var(--braise);outline-offset:1px}
+input[type=range]{width:100%;accent-color:var(--braise)}
+.tier{border:0;margin:0;padding:0}
+.tier legend{font-size:14px;color:var(--muted);margin-bottom:8px;padding:0}
+.tier-opts{display:flex;flex-wrap:wrap;gap:8px}
+.tier-opts label{margin:0;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;color:var(--text);cursor:pointer;font-size:14px}
+.tier-opts label:has(input:checked){border-color:var(--braise);background:rgba(192,122,63,.14)}
+.tier-opts input{accent-color:var(--braise);margin:0}
+.upsell{font-size:14px;color:var(--cream);background:rgba(192,122,63,.14);border-left:2px solid var(--braise);padding:10px 12px;border-radius:2px}
+.range-row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.val{font-family:var(--num);font-size:22px;color:var(--cream);font-weight:600}
+.bill{display:grid;gap:10px;font-variant-numeric:tabular-nums}
+.bill div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:8px;font-size:15px}
+.bill div span:last-child{font-family:var(--num);font-size:20px}
+.big{display:grid;gap:4px;margin-top:6px}
+.big span{font-size:14px;color:var(--muted)}
+.big b{overflow-wrap:anywhere;font-family:var(--num);font-size:clamp(32px,6vw,56px);line-height:1;color:var(--braise);font-weight:600;font-variant-numeric:tabular-nums}
+.calc-foot{font-size:13px;color:var(--muted);margin-top:14px}
+
+/* products */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.prod{background:var(--slate);border-radius:6px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
+.prod .ph{aspect-ratio:4/3;overflow:hidden;position:relative}
+.prod .ph img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:12px;left:12px;background:var(--braise);color:var(--ink);font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
+.prod .bd{padding:20px;display:grid;gap:10px;align-content:start}
+.prod h3{font-size:21px;color:var(--cream)}
+.prod .meta{font-size:13px;color:var(--muted)}
+.prod .desc{font-size:14px;color:var(--text)}
+.price{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--line);margin-top:6px;padding-top:12px;gap:8px;font-variant-numeric:tabular-nums}
+.price div{display:grid;gap:2px}
+.price small{font-size:11px;color:var(--muted);letter-spacing:.05em}
+.price b{font-family:var(--num);font-size:21px;font-weight:600;color:var(--text)}
+.price .sug b{color:var(--braise)}
+.price.flat{grid-template-columns:2fr 1fr}
+.prod.wide{grid-column:1/-1;grid-template-columns:minmax(0,1fr) minmax(0,2fr);grid-template-rows:none}
+.prod.wide .ph{aspect-ratio:auto;min-height:220px}
+.prod.wide .bd{align-content:center;padding:28px}
+@media (max-width:560px){.prod.wide{grid-template-columns:1fr}.prod.wide .ph{aspect-ratio:4/3}}
+
+/* terms */
+.terms{background:var(--soot)}
+.terms-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:24px}
+.offer{border:1px solid var(--braise);border-radius:6px;padding:28px;display:grid;gap:16px;background:linear-gradient(160deg,rgba(192,122,63,.12),transparent 60%)}
+.offer h3{font-size:24px;color:var(--cream)}
+.offer ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.offer li{display:flex;gap:12px;align-items:flex-start}
+.offer li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--braise);margin-top:10px}
+.facts{display:grid;gap:0;border-top:1px solid var(--line)}
+.facts div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding-block:14px;border-bottom:1px solid var(--line);font-size:15px}
+.facts dt,.facts span:first-child{color:var(--muted)}
+
+/* trust */
+.trust .wrap{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
+.trust .num{font-family:var(--num);font-size:clamp(72px,12vw,120px);line-height:.9;color:var(--cream);font-weight:600}
+.trust p{font-size:18px;max-width:34em}
+.trust small{display:block;color:var(--muted);font-size:14px;margin-top:8px}
+
+/* faq */
+.faq details{border-bottom:1px solid var(--line);padding-block:16px}
+.faq summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--braise);font-family:var(--num);font-size:24px;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq details p{color:var(--muted);margin-top:10px;font-size:15px}
+.faq summary:focus-visible{outline:2px solid var(--braise);outline-offset:4px}
+
+/* final */
+.final{text-align:left;position:relative;overflow:hidden}
+.final .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.final h2{font-size:clamp(30px,5vw,46px)}
+.final p{color:var(--muted);margin-top:14px}
+.final .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.final img{border-radius:4px}
+footer{border-top:1px solid var(--line);padding-block:32px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px}
+footer b{color:var(--text);font-weight:500}
+
+/* sticky bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(19,17,16,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-inline:0}
+.bar p{font-size:14px;color:var(--muted);line-height:1.4}
+.bar p b{color:var(--cream)}
+.bar .btn{min-height:44px;padding:0 20px;flex:none}
+
+@media (max-width:860px){
+  .hero .wrap,.calc-box,.terms-grid,.final .wrap,.story .wrap{grid-template-columns:1fr}
+  .story .wrap{gap:24px}
+  .hero-img{aspect-ratio:4/3;order:-1}
+  .brand{margin-bottom:24px}
+  .prod-grid{grid-template-columns:1fr 1fr}
+  .pain-grid{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr;row-gap:28px}
+  .trust .wrap{grid-template-columns:1fr;gap:12px}
+  .final img{display:none}
+}
+@media (max-width:560px){
+  section{padding-block:56px}
+  .prod-grid{grid-template-columns:1fr}
+  .bar p{display:none}
+  .bar .btn{flex:1}
+  .hero .ctas .btn{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="../" style="text-decoration:none;color:inherit"><b>百味滷製</b><span>Tasty One Hundred</span></a>
+      <p class="eyebrow">酒吧・KTV・餐酒館 批發合作</p>
+      <h1 style="margin-top:14px">沒有廚師，<br>也能賣<em>滷味</em>。</h1>
+      <p class="lede">百種辛香料慢滷的味道，急速冷凍送到你店裡，加熱 3 分鐘就能上桌。不增加人力、不必備料，菜單上多一道高毛利的下酒菜，讓客人多留一杯酒的時間。</p>
+      <div class="tags"><span class="tag">無最低訂購量</span><span class="tag">雙北 Lalamove 到店</span><span class="tag">7-11 冷凍店到店</span></div>
+      <div class="ctas">
+        <a class="btn btn-line" href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-hero">加 LINE 預約免費試吃</a>
+        <a class="btn btn-ghost" href="#calc" data-cta="calc-hero">算算看能賺多少</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="../assets/img/hero.jpg" alt="筷子夾起一塊滷豆乾，石板上擺著滷味拼盤">
+      <div class="stamp"><b>3 分鐘</b><span>解凍後加熱即可出餐</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STORY ============ -->
+<!-- 待確認：以下故事為草稿，辛香料種類、熬滷方式等細節請依實際情況修改 -->
+<section class="story">
+  <div class="wrap">
+    <div class="big100">100<small>百種辛香料・一鍋滷汁</small></div>
+    <div class="story-body">
+      <p class="eyebrow">百味的由來</p>
+      <h2>客人會回頭點的，是那一口滷汁的層次</h2>
+      <p class="lead">「百味」這個名字，來自我們滷汁裡的上百種辛香料。</p>
+      <p>八角、桂皮、甘草、花椒、陳皮、草果……每一味先分開處理，再依比例下鍋，小火慢滷，讓香氣一層一層疊進食材裡。這鍋滷汁每天回鍋續滷，味道越養越厚。</p>
+      <p>我們把這份功夫留在工廠裡完成，滷好、分裝、急速冷凍。到了你的吧檯，只剩加熱和擺盤，客人吃到的卻是一鍋老滷的味道。這就是讓店家願意固定回購的理由。</p>
+      <div class="spices" aria-label="部分使用的辛香料"><span>八角</span><span>桂皮</span><span>甘草</span><span>花椒</span><span>陳皮</span><span>草果</span><span>丁香</span><span>⋯</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULATOR ============ -->
+<section class="calc" id="calc">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">毛利試算</p>
+      <h2>一份賺多少，一個月多出多少</h2>
+      <p>選一個品項、填上你打算的菜單售價，看看每個月能多出多少毛利。</p>
+    </div>
+    <div class="calc-box">
+      <div class="calc-in">
+        <div>
+          <label for="c-item">品項</label>
+          <select id="c-item"></select>
+        </div>
+        <div>
+          <label for="c-sell">你的菜單售價（建議 <span id="c-sug"></span>）</label>
+          <input type="number" id="c-sell" min="0" step="10" inputmode="numeric">
+        </div>
+        <div>
+          <label for="c-qty">每個月大約賣出幾份</label>
+          <input type="range" id="c-qty" min="10" max="300" step="10" value="80">
+          <div class="range-row"><span>10 份</span><span class="val" id="c-qty-v">80 份</span><span>300 份</span></div>
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="bill">
+          <div><span>進貨價（每份）</span><span id="o-cost"></span></div>
+          <div><span>菜單售價（每份）</span><span id="o-sell"></span></div>
+          <div><span>每份毛利</span><span id="o-unit"></span></div>
+        </div>
+        <div class="big"><span>每月多出的毛利</span><b id="o-month"></b></div>
+        <p class="calc-foot" id="o-foot"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAIN ============ -->
+<section class="pain">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">為什麼店家選擇我們</p>
+      <h2>想加一道熱食，卡住的通常是這三件事</h2>
+    </div>
+    <div class="pain-grid">
+      <div><p class="q">店裡沒有廚房</p><h3>一台微波爐就夠</h3><p>微波或隔水加熱都可以，吧檯就能完成出餐。</p></div>
+      <div><p class="q">請不起廚師</p><h3>不需要任何人會煮</h3><p>每包已經滷好、配好份量。拆封、加熱、擺盤，誰來做都一樣好吃。</p></div>
+      <div><p class="q">怕備料用不完浪費</p><h3>冷凍保存 1 年</h3><p>急速冷凍、未拆封 -18°C 可保存一年。點一份熱一份，不會有剩料。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLOW ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">出餐流程</p>
+      <h2>從到貨到上桌，只有四個步驟</h2>
+    </div>
+    <div class="flow">
+      <div class="step"><span class="n">STEP 1</span><h3>冷凍宅配到店</h3><p>Lalamove 或 7-11 冷凍店到店，收到直接放冷凍庫。</p></div>
+      <div class="step"><span class="n">STEP 2</span><h3>冷藏解凍</h3><p>營業前一天移到冷藏，預先解凍當天要用的量。</p></div>
+      <div class="step hot"><span class="n">STEP 3</span><h3>加熱 3 分鐘</h3><p>已解凍的滷味微波約 1–2 分鐘，或隔水加熱約 5 分鐘。</p></div>
+      <div class="step"><span class="n">STEP 4</span><h3>擺盤上桌</h3><p>倒進盤子、撒點蔥絲，或淋上百味辣油。</p></div>
+    </div>
+    <p class="flow-note">來不及解凍也沒關係：未解凍的滷味包用 700–1000W 微波約 1 分 30 秒到 3 分鐘，或隔水加熱約 10 分鐘。</p>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section id="products">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">產品與批發價</p>
+      <h2>七款品項，從下酒拼盤到簡餐都有</h2>
+      <p>批發價分兩級：單次訂購 50 包以下，以及 50 包以上。右欄是建議的菜單售價。</p>
+    </div>
+    <div class="prod-grid" id="prod-grid"></div>
+  </div>
+</section>
+
+<!-- ============ TERMS ============ -->
+<section class="terms" id="terms">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">合作條件</p>
+      <h2>先試吃，喜歡再下單</h2>
+    </div>
+    <div class="terms-grid">
+      <div class="offer">
+        <p class="eyebrow">新客限定</p>
+        <h3>試吃後 7 日內首次下單，加贈：</h3>
+        <ul>
+          <li><span><b>百味辣油 100ml</b>：香而不辣，配滷味、水餃、拌麵都適合。</span></li>
+          <li><span><b>客製化桌卡</b>：印上你的店名和售價，直接放桌上推銷。</span></li>
+        </ul>
+        <div><a class="btn btn-line" href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-offer">加 LINE 預約免費試吃</a></div>
+      </div>
+      <dl class="facts" style="margin:0">
+        <div><span>訂購量</span><span>沒有最低訂購量，10 包也能叫。</span></div>
+        <div><span>雙北配送</span><span>Lalamove 冷凍直送到店。</span></div>
+        <div><span>外縣市</span><span>7-11 冷凍店到店（鴨血豆腐、百味拌麵僅限 Lalamove）。</span></div>
+        <div><span>保存</span><span>全品項冷凍保存（-18°C 以下）；滷味類未拆封可保存 1 年。</span></div>
+        <div><span>客製</span><span>單點或客製品項另議，200 包起訂。</span></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section class="trust">
+  <div class="wrap">
+    <div class="num">30+</div>
+    <div>
+      <p>已經有超過 30 間酒吧、餐酒館和 KTV 把百味滷味放上菜單，許多店家每 3 到 4 週固定回購一次。</p>
+      <small>合作店家類型：調酒吧、清酒吧、Wine bar、餐酒館、KTV</small>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">常見問題</p><h2>店家最常問的事</h2></div>
+    <details><summary>需要準備什麼設備？</summary><p>一台微波爐或一個能煮水的鍋子就夠。滷味類可以整包加熱；鴨血豆腐建議拆封後倒進容器加熱。</p></details>
+    <details><summary>試吃要錢嗎？怎麼安排？</summary><p>試吃免費。加 LINE 留下店名和方便的時間，我們會帶樣品到店，讓你和店裡的人一起吃吃看。</p></details>
+    <details><summary>一包是幾人份？</summary><p>豬滿福、小四喜等一般包約 2–3 人份，適合當下酒拼盤；豬小福、鴨血豆腐、百味拌麵約 1 人份，可以當小簡餐。</p></details>
+    <details><summary>多久可以到貨？</summary><p>雙北用 Lalamove 冷凍直送，可以配合你的營業時間約送達時段。外縣市走 7-11 冷凍店到店，實際天數依門市而定。</p></details>
+    <details><summary>可以只叫一種，或每種都叫一點嗎？</summary><p>可以。沒有最低訂購量，也可以混搭品項。訂購量超過 50 包會適用較低的批發價。</p></details>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final" style="background:var(--soot)">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">下一步</p>
+      <h2 style="margin-top:10px">先吃吃看，<br>再決定要不要放上菜單。</h2>
+      <p>加 LINE 告訴我們店名和方便的時間，我們帶樣品過去。</p>
+      <div class="ctas">
+        <a class="btn btn-line" href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-final">加 LINE 預約免費試吃</a>
+      </div>
+    </div>
+    <img src="../assets/img/final.jpg" alt="三盤百味滷味在暗色桌面上">
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><b>主簿食品有限公司</b>（百味滷製）</span>
+    <span>統編 60740193</span>
+    <span>電話 02-2703-4708</span>
+    <span>聯絡人 Xin 0908-027-788</span>
+    <span>新北市新店區中正路 508 號</span>
+    <span>圖片僅供參考，產品以實物為準</span>
+  </div>
+</footer>
+
+<div class="bar">
+  <div class="wrap">
+    <p><b>新客 7 日內下單送辣油＋客製桌卡</b><br>無最低訂購量</p>
+    <a class="btn btn-line" href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-sticky">預約免費試吃</a>
+  </div>
+</div>
+
+<script>
+/* 產品資料：價格改這裡就好 */
+var PRODUCTS = [
+  {id:"zmf", name:"豬滿福", img:"../assets/img/zmf.jpg", meta:"約 380±20g・2–3 人份", desc:"豬頰肉、鴨丸、蒟蒻丸、百頁、豆乾。店家點最多的招牌拼盤。", lo:180, hi:160, sug:[330,450], badge:"招牌"},
+  {id:"ssx", name:"小四喜", img:"../assets/img/ssx.jpg", meta:"約 380±20g・2–3 人份", desc:"豆乾、米血、杏鮑菇、百頁。經典的下酒組合。", lo:150, hi:130, sug:[200,280]},
+  {id:"zxf", name:"豬小福", img:"../assets/img/zxf.jpg", meta:"約 190±10g・1 人份", desc:"豬滿福的一人份：豬頰肉、香菇蒟蒻丸、百頁豆腐、豆乾。", flat:99, sug:[280,320]},
+  {id:"hq", name:"厚切嫩豬", img:"../assets/img/hq.jpg", meta:"約 100±10g・單點", desc:"厚切豬頰肉，中西式料理皆能靈活變化，無論搭配紅酒或啤酒，都能展現不同風味。", lo:90, hi:80, sug:[150,180]},
+  {id:"yx", name:"經典鴨血豆腐", img:"../assets/img/yx.jpg", meta:"約 450g・1 人份", desc:"鴨血口感滑嫩，豆腐吸飽湯汁，加熱後連湯帶料直接上桌。搭配麵食，就是一份暖胃的小簡餐。", flat:85, sug:[200,250]},
+  {id:"noodle", name:"百味拌麵", img:"../assets/img/noodle.jpg", meta:"約 350±20g・1 人份", desc:"滷汁拌麵配滷料，深夜時段的飽足選擇。", lo:129, hi:99, sug:[200,280], badge:"限量供應"},
+  {id:"oil", name:"百味辣油", img:"../assets/img/oil.jpg", meta:"250ml 罐裝", desc:"香而不辣。配滷味、水餃、拌麵都適合。", flat:200, oil:true}
+];
+
+var $ = function(id){return document.getElementById(id)};
+var fmt = function(n){return "$" + Math.round(n).toLocaleString("zh-TW")};
+
+/* 產品卡 */
+$("prod-grid").innerHTML = PRODUCTS.map(function(p){
+  var price;
+  if (p.oil) {
+    price = '<div class="price flat"><div><small>批發價</small><b>'+fmt(p.flat)+'</b></div><div></div></div>';
+  } else if (p.flat) {
+    price = '<div class="price flat"><div><small>批發價（均一價）</small><b>'+fmt(p.flat)+'</b></div><div class="sug"><small>建議售價</small><b>'+p.sug[0]+'–'+p.sug[1]+'</b></div></div>';
+  } else {
+    price = '<div class="price"><div><small>50 包以下</small><b>'+fmt(p.lo)+'</b></div><div><small>50 包以上</small><b>'+fmt(p.hi)+'</b></div><div class="sug"><small>建議售價</small><b>'+p.sug[0]+'–'+p.sug[1]+'</b></div></div>';
+  }
+  return '<article class="prod'+(p.oil?' wide':'')+'"><div class="ph"><img loading="lazy" src="'+p.img+'" alt="'+p.name+'">'+(p.badge?'<span class="badge">'+p.badge+'</span>':'')+'</div>'+
+         '<div class="bd"><h3>'+p.name+'</h3><p class="meta">'+p.meta+'</p><p class="desc">'+p.desc+'</p>'+price+'</div></article>';
+}).join("");
+
+/* 毛利試算 */
+var calcItems = PRODUCTS.filter(function(p){return !p.oil});
+$("c-item").innerHTML = calcItems.map(function(p){return '<option value="'+p.id+'">'+p.name+'</option>'}).join("");
+function cur(){ var id=$("c-item").value; return calcItems.filter(function(p){return p.id===id})[0]; }
+function setDefaultSell(){ var p=cur(); $("c-sell").value = Math.round((p.sug[0]+p.sug[1])/2/10)*10; $("c-sug").textContent = "$"+p.sug[0]+"–"+p.sug[1]; }
+function range(a,b){ return a===b ? fmt(a) : fmt(Math.min(a,b))+"–"+fmt(Math.max(a,b)).slice(1); }
+function calc(){
+  var p=cur(), monthly=+$("c-qty").value, sell=+$("c-sell").value||0;
+  var hiCost = p.flat ? p.flat : p.lo, loCost = p.flat ? p.flat : p.hi;   // lo/hi = 50包以下/以上的進價
+  $("c-qty-v").textContent = monthly+" 份";
+  $("o-cost").textContent = range(loCost,hiCost);
+  $("o-sell").textContent = fmt(sell);
+  $("o-unit").textContent = range(sell-hiCost, sell-loCost);
+  $("o-month").textContent = range((sell-hiCost)*monthly, (sell-loCost)*monthly);
+  $("o-foot").textContent = p.flat ? "均一價品項，不分叫貨量。" :
+    "進價依單次叫貨量而定：50 包以下 "+fmt(p.lo)+"，50 包以上 "+fmt(p.hi)+"。區間低的一端是每次叫 50 包以下的情況。";
+}
+$("c-item").addEventListener("change", function(){ setDefaultSell(); calc(); });
+$("c-sell").addEventListener("input", calc);
+$("c-qty").addEventListener("input", calc);
+setDefaultSell(); calc();
+
+/* 追蹤：之後裝上 Meta Pixel，這段會把每個按鈕的點擊送成事件 */
+document.addEventListener("click", function(e){
+  var a = e.target.closest("[data-cta]"); if(!a) return;
+  var name = a.getAttribute("data-cta");
+  if (window.fbq) {
+    if (name.indexOf("line")===0) fbq("track","Contact",{cta:name});
+    else if (name.indexOf("form")===0) fbq("track","Lead",{cta:name});
+    else fbq("trackCustom","CTAClick",{cta:name});
+  }
+});
+</script>
+
+</body>
+</html>
