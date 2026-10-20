@@ -13,6 +13,9 @@
 <script>document.documentElement.className += " js";</script>
 <style>
 /* 首頁（一頁式，給一般消費者）：品牌故事 → 品項介紹 → 怎麼吃 → 怎麼買；店家採購導到 LINE */
+/* logo */
+.logo img{height:24px;width:auto}
+.hero-logo{width:clamp(200px,20vw,270px);height:auto}
 .spices{font-size:13px;color:var(--muted);letter-spacing:.3em;line-height:2.2}
 .btn.line{border-color:#06c755;background:#06c755;color:#fff}
 .btn.line:hover{background:transparent;color:#06c755}
@@ -58,7 +61,7 @@
 <body>
 
 <header class="top">
-  <a class="logo" href="./"><b>百味滷製</b><span>Tasty One Hundred</span></a>
+  <a class="logo" href="./" aria-label="百味滷制 首頁"><img src="assets/img/logo-mark.png" alt="百味滷制" width="337" height="69"></a>
   <nav class="nav" aria-label="主選單">
     <a href="#story">品牌故事</a>
     <a href="#menu">品項</a>
@@ -81,10 +84,11 @@
 <!-- 待確認：賣貨便連結目前打不開（顯示「賣場資料不存在」），請換成正確的賣場網址。本頁有 2 個按鈕用到，搜尋 GM250926569503 就能找到 -->
 <section class="split hero bottom">
   <div class="text">
-    <span class="label rv">Tasty One Hundred</span>
+    <img class="hero-logo rv" src="assets/img/logo.png" alt="百味滷制 Tasty One Hundred" width="337" height="89">
     <h1 class="rv">一百種香料，<br>熬成一口百味。</h1>
     <p class="rv">我們把一鍋老滷的功夫留在廚房裡，滷好、分裝、急速冷凍。回到家，加熱 3 分鐘，就是那一口味道。追劇、宵夜、配一杯酒都剛好。</p>
     <div class="btns rv">
+      <a class="btn line" href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-hero-biz">店家・企業採購</a>
       <a class="btn fill" href="https://myship.7-11.com.tw/general/detail/GM250926569503" target="_blank" rel="noopener" data-cta="buy-hero">7-11 賣貨便購買</a>
       <a class="btn" href="#menu" data-cta="menu-hero">看看品項</a>
     </div>
@@ -99,7 +103,7 @@
     <span class="label rv">Story<small>百味的由來</small></span>
     <p class="lead rv">百種辛香料，一鍋慢滷</p>
     <h2 class="rv">「百味」，<br>是滷汁裡的上百種辛香料。</h2>
-    <p class="rv">八角、桂皮、甘草、花椒、陳皮、草果⋯⋯每一味先分開處理，再依比例下鍋，小火慢滷，讓香氣一層一層疊進食材裡。這鍋滷汁每天回鍋續滷，味道越養越厚。</p>
+    <p class="rv">八角、桂皮、甘草、花椒、陳皮、草果⋯⋯每一味先分開處理，再依比例下鍋，小火慢滷，讓香氣一層一層疊進食材裡。</p>
     <p class="rv">好的滷味要時間，我們替你把時間花完了。</p>
     <p class="spices rv">八角・桂皮・甘草・花椒・陳皮・草果・丁香⋯</p>
   </div>
@@ -118,38 +122,39 @@
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/zmf.jpg" alt="豬滿福"><span class="badge">招牌</span></div>
         <h3>豬滿福</h3><p class="meta">約 380±20g・2–3 人份</p>
-        <p class="desc">豬頰肉、鴨丸、蒟蒻丸、百頁、豆乾。料多到一包就是一整盤，朋友來家裡喝一杯最剛好。</p>
+        <p class="desc">豬頰肉、鴨丸、蒟蒻丸、百頁、豆乾，一包五種料，每一樣都吸飽了滷汁。份量足足 2–3 人份，倒進盤子就是一整盤下酒菜，朋友來家裡喝一杯最剛好。</p>
       </article>
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/ssx.jpg" alt="小四喜"></div>
         <h3>小四喜</h3><p class="meta">約 380±20g・2–3 人份</p>
-        <p class="desc">豆乾、米血、杏鮑菇、百頁。經典的下酒組合。</p>
+        <p class="desc">豆乾、米血、杏鮑菇、百頁，四樣最經典的滷味一次到齊。豆乾越嚼越香、米血軟 Q，杏鮑菇咬下去還帶著湯汁，配一杯啤酒剛剛好。</p>
       </article>
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/zxf.jpg" alt="豬小福"></div>
         <h3>豬小福</h3><p class="meta">約 190±10g・1 人份</p>
-        <p class="desc">豬滿福的一人份：豬頰肉、香菇蒟蒻丸、百頁豆腐、豆乾。</p>
+        <p class="desc">豬滿福的一人份。豬頰肉、香菇蒟蒻丸、百頁豆腐、豆乾一樣不少，份量剛好一個人吃完。加班回家、深夜嘴饞，熱一包就有。</p>
       </article>
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/hq.jpg" alt="厚切嫩豬"></div>
         <h3>厚切嫩豬</h3><p class="meta">約 100±10g・單點</p>
-        <p class="desc">厚切豬頰肉，中西式料理皆能靈活變化，無論搭配紅酒或啤酒，都能展現不同風味。</p>
+        <p class="desc">豬頰肉厚切滷透，肉質軟嫩、越嚼越香。我們已經幫你切好片，加熱後倒進盤子就是一盤下酒菜；配上沙拉也合適，中式西式都能變化，紅酒、啤酒都搭。</p>
       </article>
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/yx.jpg" alt="經典鴨血豆腐"></div>
         <h3>經典鴨血豆腐</h3><p class="meta">約 450g・1 人份</p>
-        <p class="desc">鴨血口感滑嫩，豆腐吸飽湯汁，加熱後連湯帶料直接上桌。搭配麵食，就是一份暖胃的小簡餐。</p>
+        <p class="desc">鴨血滑嫩，豆腐吸飽湯汁，連湯帶料滿滿一整包。天冷的晚上熱一包，加一把麵，就是一份暖胃的宵夜。</p>
       </article>
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/noodle.jpg" alt="百味拌麵"><span class="badge">限量供應</span></div>
         <h3>百味拌麵</h3><p class="meta">約 350±20g・1 人份</p>
-        <p class="desc">滷汁拌麵配滷料，深夜肚子餓時的飽足選擇。</p>
+        <p class="desc">滷汁拌麵配上滷料，一碗就飽。深夜肚子餓的時候，不用出門、不用開火，3 分鐘就有一碗熱的。</p>
       </article>
       <article class="prod wide rv">
         <div class="ph"><img loading="lazy" src="assets/img/oil.jpg" alt="百味辣油"></div>
         <div style="display:grid;gap:14px">
           <h3>百味辣油</h3><p class="meta">250ml 罐裝</p>
-          <p class="desc">香而不辣。配滷味、水餃、拌麵都適合。</p>
+          <p class="desc">數十種香料下鍋拌炒，把香氣都炒進油裡，留下最精華的那一匙紅油。</p>
+          <p class="desc">入口先是香，辣只在後頭輕輕帶過，怕辣的人也能放心淋。滷味、水餃、拌麵加上一匙，味道立刻多一層。</p>
         </div>
       </article>
     </div>
@@ -167,7 +172,7 @@
       <li><span class="n">02</span><h3>加熱</h3><p>前一天移到冷藏解凍，微波約 1–2 分鐘；來不及解凍，直接微波約 1 分 30 秒到 3 分鐘，或隔水加熱約 10 分鐘。</p></li>
       <li><span class="n">03</span><h3>倒進盤子</h3><p>撒點蔥絲，或淋上百味辣油，就是一盤下酒菜。</p></li>
     </ol>
-    <p class="note rv">微波時間以 700–1000W 為準。鴨血豆腐建議拆封後倒進容器加熱。</p>
+    <p class="note rv">微波時間以 700–1000W 為準。鴨血豆腐請用隔水加熱：水滾後不用拆封，整包放入約 5 分鐘。</p>
   </div>
 </section>
 
