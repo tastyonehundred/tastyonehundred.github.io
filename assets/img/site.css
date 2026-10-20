@@ -1,0 +1,100 @@
+/* 百味滷製 共用樣式
+   方向：參考 EIKA（深色、照片當主角、字少而克制、捲動淡入）
+   與 Tairroir（左右對半、短引言 → 主張大標 → 灰色短內文） */
+
+.val,.big b,.price b,.bill span,.n,.num{font-variant-numeric:lining-nums tabular-nums}
+:root{
+  --bg:#111110;          /* 頁面底色 */
+  --bg2:#171615;         /* 交錯區塊底色 */
+  --line:rgba(236,226,210,.14);
+  --head:#ebe4d8;        /* 標題 */
+  --text:#bdb5a9;        /* 內文 */
+  --muted:#7f786f;       /* 次要文字 */
+  --accent:#b98a5e;      /* 滷汁琥珀，只少量點綴 */
+  --display:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --latin:"Cormorant Garamond","Noto Serif TC",Georgia,serif;
+  --pad:clamp(20px,6vw,96px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-weight:300;font-size:15px;line-height:2;letter-spacing:.06em;margin:0;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{font-family:var(--display);font-weight:500;color:var(--head);margin:0;letter-spacing:.08em;text-wrap:balance}
+h1{font-size:clamp(34px,4.6vw,60px);line-height:1.45}
+h2{font-size:clamp(24px,2.8vw,34px);line-height:1.6}
+h3{font-size:19px;line-height:1.6}
+b,strong{font-weight:500;color:var(--head)}
+:focus-visible{outline:1px solid var(--head);outline-offset:4px}
+
+/* 英文襯線標籤：Story / Menu… */
+.label{font-family:var(--latin);font-style:italic;font-size:clamp(22px,2.2vw,30px);color:var(--head);letter-spacing:.02em;line-height:1;display:block}
+.label small{font-family:var(--body);font-style:normal;font-size:12px;letter-spacing:.3em;color:var(--muted);margin-left:14px;vertical-align:middle}
+.lead{font-size:14px;color:var(--head);letter-spacing:.2em}
+.note{font-size:13px;color:var(--muted)}
+
+/* header */
+.top{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:22px var(--pad);transition:background .4s,padding .4s}
+.top.solid{background:rgba(17,17,16,.92);backdrop-filter:blur(8px);padding-block:14px}
+.logo{display:flex;align-items:baseline;gap:12px;text-decoration:none}
+.logo b{font-family:var(--display);font-size:20px;letter-spacing:.3em;color:var(--head);font-weight:500}
+.logo span{font-family:var(--latin);font-style:italic;font-size:15px;color:var(--muted);letter-spacing:.02em}
+.nav{display:flex;gap:28px;font-size:13px;letter-spacing:.2em}
+.nav a{text-decoration:none;color:var(--text);transition:color .2s}
+.nav a:hover{color:var(--head)}
+.burger{display:none;background:none;border:0;padding:8px;cursor:pointer;color:var(--head)}
+.burger i{display:block;width:26px;height:1px;background:currentColor;margin:7px 0}
+.menu{position:fixed;inset:0;z-index:40;background:var(--bg);display:none;flex-direction:column;justify-content:center;gap:10px;padding:var(--pad)}
+.menu.open{display:flex}
+.menu a{font-family:var(--display);font-size:26px;color:var(--head);text-decoration:none;letter-spacing:.2em;line-height:2.2}
+.menu .x{position:absolute;top:22px;right:var(--pad);background:none;border:0;color:var(--text);font:inherit;font-size:12px;letter-spacing:.3em;cursor:pointer;padding:8px}
+
+/* 左右對半 */
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.split .media{position:relative;overflow:hidden;background:var(--bg2)}
+.split .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.split .text{padding:120px var(--pad);display:flex;flex-direction:column;justify-content:center;gap:28px;max-width:720px}
+.split.flip .media{order:2}
+.split.bottom .text{justify-content:flex-end;padding-bottom:12vh}
+.split .text > p:not(.lead):not(.note){max-width:30em}
+
+/* 一般區塊 */
+.sec{padding:clamp(96px,14vw,180px) var(--pad)}
+.sec.alt{background:var(--bg2)}
+.head{display:grid;gap:22px;margin-bottom:clamp(48px,6vw,80px);max-width:640px}
+.wrap{max-width:1160px;margin:0 auto}
+
+/* 按鈕：細線、字距拉開 */
+.btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 30px;border:1px solid var(--head);color:var(--head);text-decoration:none;font-size:13px;letter-spacing:.24em;font-weight:400;transition:background .3s,color .3s}
+.btn:hover{background:var(--head);color:var(--bg)}
+.btn.fill{background:var(--head);color:var(--bg)}
+.btn.fill:hover{background:transparent;color:var(--head)}
+.more{font-size:13px;letter-spacing:.24em;color:var(--head);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:6px;align-self:flex-start;transition:border-color .3s}
+.more:hover{border-color:var(--head)}
+
+footer{border-top:1px solid var(--line);padding:48px var(--pad);font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 32px;letter-spacing:.1em}
+footer b{color:var(--text);font-weight:400}
+
+/* 捲動淡入：沒有 JS 時直接顯示 */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity 1.2s ease,transform 1.2s ease}
+.js .rv.in{opacity:1;transform:none}
+.js .media.rv{transform:none;transition:opacity 1.6s ease}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:900px){
+  .nav{display:none}
+  .burger{display:block}
+  .split{grid-template-columns:1fr;min-height:0}
+  .split .media{aspect-ratio:4/5;order:-1!important}
+  .split .text{padding:56px var(--pad) 88px;max-width:none}
+  .split.bottom .text{padding-bottom:88px}
+  .split.hero .media{aspect-ratio:4/5;max-height:78vh;width:100%}
+}
+@media (max-width:560px){
+  body{font-size:14.5px}
+  .btns .btn{flex:1 1 100%}
+}
