@@ -3,182 +3,202 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="百味滷製：一鍋百種辛香料慢滷的滷汁。酒吧、KTV、餐酒館批發合作，以及在家享用的冷凍滷味。">
+<meta name="description" content="百味滷製：一鍋百種辛香料慢滷的滷汁，急速冷凍，加熱 3 分鐘就上桌。追劇、宵夜、配一杯酒都剛好。7-11 冷凍店到店。">
 <!-- ===== Meta Pixel：到 Meta 事件管理工具複製你的 Pixel 程式碼，貼在這裡 ===== -->
 <title>百味滷製</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.className += " js";</script>
 <style>
-/* 品牌首頁：講品牌故事，分流到 店家合作（/b2b/）與 在家享用（C 端，尚未上線） */
-:root{
-  --ink:#131110;
-  --soot:#1c1916;
-  --slate:#26221e;
-  --line:#3a342d;
-  --cream:#ecd4b0;
-  --braise:#c07a3f;
-  --text:#efe7dc;
-  --muted:#b3a593;
-  --display:"Noto Serif TC","Songti TC","PMingLiU",serif;
-  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
-  --num:"Cormorant Garamond","Noto Serif TC",Georgia,serif;
-  color-scheme:dark;
-}
-*{box-sizing:border-box}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-body{background:var(--ink);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.75;margin:0}
-img{max-width:100%;display:block}
-a{color:inherit}
-.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;font-weight:700;letter-spacing:.02em}
-p{margin:0}
-.eyebrow{font-size:13px;letter-spacing:.24em;color:var(--braise);font-weight:500}
+/* 首頁（一頁式，給一般消費者）：品牌故事 → 品項介紹 → 怎麼吃 → 怎麼買；店家採購導到 LINE */
+.spices{font-size:13px;color:var(--muted);letter-spacing:.3em;line-height:2.2}
+.btn.line{border-color:#06c755;background:#06c755;color:#fff}
+.btn.line:hover{background:transparent;color:#06c755}
+.nav .biz{color:var(--head);border:1px solid var(--line);padding:2px 12px}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s}
-.btn:hover{transform:translateY(-1px)}
-.btn:focus-visible,.door:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
-.btn-main{background:var(--braise);color:var(--ink)}
-.btn-ghost{border-color:var(--cream);color:var(--cream);background:transparent}
-.btn-ghost:hover{background:rgba(236,212,176,.08)}
+/* 品項：像菜單一樣排列，不標價格 */
+.prods{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(40px,4vw,64px) clamp(24px,3vw,40px)}
+.prod{display:grid;gap:14px;align-content:start;min-width:0}
+.prod .ph{aspect-ratio:4/5;overflow:hidden;position:relative;background:var(--bg2)}
+.prod .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s ease}
+.prod:hover .ph img{transform:scale(1.03)}
+.badge{position:absolute;top:14px;left:14px;font-size:11px;letter-spacing:.24em;color:var(--head);border:1px solid rgba(235,228,216,.5);background:rgba(17,17,16,.55);padding:2px 10px}
+.prod h3{font-size:21px;letter-spacing:.14em}
+.prod .meta{font-size:12px;color:var(--muted);letter-spacing:.14em;border-bottom:1px solid var(--line);padding-bottom:12px}
+.prod .desc{font-size:14px}
+.prod.wide{grid-column:1/-1;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);align-items:center}
+.prod.wide .ph{aspect-ratio:16/10}
 
-/* hero */
-.hero{padding-block:40px 72px}
-.brand{display:flex;align-items:baseline;gap:12px;margin-bottom:48px}
-.brand b{font-family:var(--display);font-size:22px;color:var(--cream);letter-spacing:.18em}
-.brand span{font-family:var(--num);font-style:italic;color:var(--muted);font-size:15px}
-.hero .wrap > .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-.hero h1{font-size:clamp(38px,6.4vw,66px);line-height:1.2;color:var(--cream);font-weight:900}
-.hero h1 em{font-style:normal;color:var(--braise)}
-.hero .lede{margin-top:22px;font-size:18px;max-width:30em}
-.hero-img{border-radius:4px;overflow:hidden;aspect-ratio:4/5}
-.hero-img img{width:100%;height:100%;object-fit:cover}
+/* 怎麼吃 */
+.steps{display:grid;margin:0;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:56px 1fr;gap:6px 18px;padding-block:22px;border-bottom:1px solid var(--line)}
+.steps li:first-child{border-top:1px solid var(--line)}
+.steps .n{font-family:var(--latin);font-style:italic;font-size:22px;color:var(--accent)}
+.steps h3{font-size:17px}
+.steps p{grid-column:2;font-size:14px}
 
-/* story */
-.story{background:var(--soot);padding-block:72px}
-.story .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
-.big100{font-family:var(--num);font-size:clamp(96px,16vw,180px);line-height:.85;font-variant-numeric:lining-nums;color:var(--cream);font-weight:600}
-.big100 small{display:block;font-family:var(--display);font-size:18px;color:var(--braise);letter-spacing:.3em;margin-top:14px}
-.story-body{display:grid;gap:16px}
-.story-body h2{font-size:clamp(26px,4.4vw,38px);line-height:1.3;color:var(--cream)}
-.story-body p{color:var(--muted)}
-.spices{display:flex;flex-wrap:wrap;gap:8px}
-.spices span{font-size:13px;color:var(--cream);border:1px solid var(--line);border-radius:999px;padding:3px 12px}
+/* 店家採購導流 */
+.biz-band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(64px,9vw,112px) var(--pad);display:grid;grid-template-columns:1fr auto;gap:32px 64px;align-items:center}
+.biz-band .t{display:grid;gap:14px;max-width:640px}
+.biz-band h2{font-size:clamp(22px,2.4vw,30px)}
 
-/* doors：兩個分流入口 */
-.doors{padding-block:72px}
-.doors h2{font-size:clamp(26px,4.4vw,38px);line-height:1.3;color:var(--cream);margin:12px 0 32px}
-.door-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.door{background:var(--slate);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;text-decoration:none;transition:border-color .15s,transform .15s}
-a.door:hover{border-color:var(--braise);transform:translateY(-2px)}
-.door .ph{aspect-ratio:16/9;overflow:hidden;position:relative}
-.door .ph img{width:100%;height:100%;object-fit:cover}
-.door .bd{padding:24px;display:grid;gap:10px;align-content:start}
-.door .who{font-size:13px;color:var(--muted);letter-spacing:.1em}
-.door h3{font-size:26px;color:var(--cream)}
-.door p{color:var(--muted);font-size:15px}
-.door .go{margin-top:8px;color:var(--braise);font-weight:700}
-.soon{position:absolute;top:12px;left:12px;background:var(--ink);color:var(--cream);border:1px solid var(--line);font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
-.door.off .ph img{filter:grayscale(.5) brightness(.75)}
-
-footer{border-top:1px solid var(--line);padding-block:32px;font-size:13px;color:var(--muted)}
-footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px}
-footer b{color:var(--text);font-weight:500}
-
-@media (max-width:860px){
-  .hero .wrap > .grid,.story .wrap,.door-grid{grid-template-columns:1fr}
-  .story .wrap{gap:24px}
-  .hero-img{aspect-ratio:4/3;order:-1}
-  .brand{margin-bottom:24px}
+@media (max-width:900px){
+  .prods{grid-template-columns:1fr 1fr}
+  .prod.wide{grid-template-columns:1fr}
+  .biz-band{grid-template-columns:1fr}
 }
 @media (max-width:560px){
-  .story,.doors{padding-block:56px}
-  .hero .btn{flex:1 1 100%}
+  .prods{grid-template-columns:1fr}
+  .biz-band .btn{width:100%}
 }
 </style>
 </head>
 <body>
 
+<header class="top">
+  <a class="logo" href="./"><b>百味滷製</b><span>Tasty One Hundred</span></a>
+  <nav class="nav" aria-label="主選單">
+    <a href="#story">品牌故事</a>
+    <a href="#menu">品項</a>
+    <a href="#howto">怎麼吃</a>
+    <a href="#buy">購買</a>
+    <a class="biz" href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-nav-biz">店家・企業採購</a>
+  </nav>
+  <button class="burger" aria-label="開啟選單"><i></i><i></i></button>
+</header>
+<div class="menu" role="dialog" aria-label="選單">
+  <button class="x">CLOSE ✕</button>
+  <a href="#story">品牌故事</a>
+  <a href="#menu">品項</a>
+  <a href="#howto">怎麼吃</a>
+  <a href="#buy">購買</a>
+  <a href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-menu-biz">店家・企業採購</a>
+</div>
+
 <!-- ============ HERO ============ -->
-<header class="hero">
-  <div class="wrap">
-    <div class="brand"><b>百味滷製</b><span>Tasty One Hundred</span></div>
-    <div class="grid">
-      <div>
-        <p class="eyebrow">百種辛香料・一鍋慢滷</p>
-        <h1 style="margin-top:14px">一百種香料，<br>熬成一口<em>百味</em>。</h1>
-        <p class="lede">我們把一鍋老滷的功夫留在廚房裡，滷好、分裝、急速冷凍。不管是在你的吧檯，還是你家的餐桌，加熱 3 分鐘就是那一口味道。</p>
-        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">
-          <a class="btn btn-main" href="b2b/" data-cta="home-hero-b2b">店家合作</a>
-          <a class="btn btn-ghost" href="#doors" data-cta="home-hero-doors">了解百味</a>
-        </div>
-      </div>
-      <div class="hero-img"><img src="assets/img/hero.jpg" alt="筷子夾起一塊滷豆乾，石板上擺著滷味拼盤"></div>
+<!-- 待確認：賣貨便連結目前打不開（顯示「賣場資料不存在」），請換成正確的賣場網址。本頁有 2 個按鈕用到，搜尋 GM250926569503 就能找到 -->
+<section class="split hero bottom">
+  <div class="text">
+    <span class="label rv">Tasty One Hundred</span>
+    <h1 class="rv">一百種香料，<br>熬成一口百味。</h1>
+    <p class="rv">我們把一鍋老滷的功夫留在廚房裡，滷好、分裝、急速冷凍。回到家，加熱 3 分鐘，就是那一口味道。追劇、宵夜、配一杯酒都剛好。</p>
+    <div class="btns rv">
+      <a class="btn fill" href="https://myship.7-11.com.tw/general/detail/GM250926569503" target="_blank" rel="noopener" data-cta="buy-hero">7-11 賣貨便購買</a>
+      <a class="btn" href="#menu" data-cta="menu-hero">看看品項</a>
     </div>
   </div>
-</header>
+  <div class="media rv"><img src="assets/img/hero.jpg" alt="筷子夾起一塊滷豆乾，石板上擺著滷味"></div>
+</section>
 
 <!-- ============ STORY ============ -->
 <!-- 待確認：以下故事為草稿，辛香料種類、熬滷方式等細節請依實際情況修改（b2b/index.html 的故事區塊也要一起改） -->
-<section class="story">
+<section class="split flip" id="story" style="background:var(--bg2)">
+  <div class="text">
+    <span class="label rv">Story<small>百味的由來</small></span>
+    <p class="lead rv">百種辛香料，一鍋慢滷</p>
+    <h2 class="rv">「百味」，<br>是滷汁裡的上百種辛香料。</h2>
+    <p class="rv">八角、桂皮、甘草、花椒、陳皮、草果⋯⋯每一味先分開處理，再依比例下鍋，小火慢滷，讓香氣一層一層疊進食材裡。這鍋滷汁每天回鍋續滷，味道越養越厚。</p>
+    <p class="rv">好的滷味要時間，我們替你把時間花完了。</p>
+    <p class="spices rv">八角・桂皮・甘草・花椒・陳皮・草果・丁香⋯</p>
+  </div>
+  <div class="media rv"><img loading="lazy" src="assets/img/hq.jpg" alt="石板上切開的厚切滷豬肉"></div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="sec" id="menu">
   <div class="wrap">
-    <div class="big100">100<small>百種辛香料・一鍋滷汁</small></div>
-    <div class="story-body">
-      <p class="eyebrow">百味的由來</p>
-      <h2>「百味」，是滷汁裡的上百種辛香料</h2>
-      <p>八角、桂皮、甘草、花椒、陳皮、草果……每一味先分開處理，再依比例下鍋，小火慢滷，讓香氣一層一層疊進食材裡。這鍋滷汁每天回鍋續滷，味道越養越厚。</p>
-      <p>好的滷味要時間，我們替你把時間花完了。</p>
-      <div class="spices" aria-label="部分使用的辛香料"><span>八角</span><span>桂皮</span><span>甘草</span><span>花椒</span><span>陳皮</span><span>草果</span><span>丁香</span><span>⋯</span></div>
+    <div class="head">
+      <span class="label rv">Menu<small>品項</small></span>
+      <h2 class="rv">一個人的宵夜，<br>一群人的下酒拼盤。</h2>
+      <p class="rv">每一包都已經滷好、配好份量。從 2–3 人份的拼盤，到一個人剛好的小簡餐。</p>
+    </div>
+    <div class="prods">
+      <article class="prod rv">
+        <div class="ph"><img loading="lazy" src="assets/img/zmf.jpg" alt="豬滿福"><span class="badge">招牌</span></div>
+        <h3>豬滿福</h3><p class="meta">約 380±20g・2–3 人份</p>
+        <p class="desc">豬頰肉、鴨丸、蒟蒻丸、百頁、豆乾。料多到一包就是一整盤，朋友來家裡喝一杯最剛好。</p>
+      </article>
+      <article class="prod rv">
+        <div class="ph"><img loading="lazy" src="assets/img/ssx.jpg" alt="小四喜"></div>
+        <h3>小四喜</h3><p class="meta">約 380±20g・2–3 人份</p>
+        <p class="desc">豆乾、米血、杏鮑菇、百頁。經典的下酒組合。</p>
+      </article>
+      <article class="prod rv">
+        <div class="ph"><img loading="lazy" src="assets/img/zxf.jpg" alt="豬小福"></div>
+        <h3>豬小福</h3><p class="meta">約 190±10g・1 人份</p>
+        <p class="desc">豬滿福的一人份：豬頰肉、香菇蒟蒻丸、百頁豆腐、豆乾。</p>
+      </article>
+      <article class="prod rv">
+        <div class="ph"><img loading="lazy" src="assets/img/hq.jpg" alt="厚切嫩豬"></div>
+        <h3>厚切嫩豬</h3><p class="meta">約 100±10g・單點</p>
+        <p class="desc">厚切豬頰肉，中西式料理皆能靈活變化，無論搭配紅酒或啤酒，都能展現不同風味。</p>
+      </article>
+      <article class="prod rv">
+        <div class="ph"><img loading="lazy" src="assets/img/yx.jpg" alt="經典鴨血豆腐"></div>
+        <h3>經典鴨血豆腐</h3><p class="meta">約 450g・1 人份</p>
+        <p class="desc">鴨血口感滑嫩，豆腐吸飽湯汁，加熱後連湯帶料直接上桌。搭配麵食，就是一份暖胃的小簡餐。</p>
+      </article>
+      <article class="prod rv">
+        <div class="ph"><img loading="lazy" src="assets/img/noodle.jpg" alt="百味拌麵"><span class="badge">限量供應</span></div>
+        <h3>百味拌麵</h3><p class="meta">約 350±20g・1 人份</p>
+        <p class="desc">滷汁拌麵配滷料，深夜肚子餓時的飽足選擇。</p>
+      </article>
+      <article class="prod wide rv">
+        <div class="ph"><img loading="lazy" src="assets/img/oil.jpg" alt="百味辣油"></div>
+        <div style="display:grid;gap:14px">
+          <h3>百味辣油</h3><p class="meta">250ml 罐裝</p>
+          <p class="desc">香而不辣。配滷味、水餃、拌麵都適合。</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ============ DOORS ============ -->
-<section class="doors" id="doors">
-  <div class="wrap">
-    <p class="eyebrow">你是</p>
-    <h2>想把百味放上菜單，還是端上餐桌？</h2>
-    <div class="door-grid">
-      <a class="door" href="b2b/" data-cta="home-door-b2b">
-        <div class="ph"><img loading="lazy" src="assets/img/final.jpg" alt="三盤百味滷味在暗色桌面上"></div>
-        <div class="bd">
-          <span class="who">酒吧・KTV・餐酒館</span>
-          <h3>店家合作</h3>
-          <p>沒有廚師也能賣滷味。加熱 3 分鐘上桌，為菜單多一道高毛利下酒菜，無最低訂購量。</p>
-          <span class="go">看批發價與毛利試算 →</span>
-        </div>
-      </a>
-      <!-- C 端頁面上線後：把這個 div 換成 <a class="door" href="shop/">，並拿掉 off 和「即將推出」 -->
-      <div class="door off">
-        <div class="ph"><img loading="lazy" src="assets/img/zmf.jpg" alt="豬滿福滷味拼盤"><span class="soon">即將推出</span></div>
-        <div class="bd">
-          <span class="who">在家享用</span>
-          <h3>個人購買</h3>
-          <p>同一鍋滷汁，冷凍宅配到你家。追劇、宵夜、配一杯酒都剛好。</p>
-          <span class="go" style="color:var(--muted)">敬請期待</span>
-        </div>
-      </div>
-    </div>
+<!-- ============ HOW TO ============ -->
+<section class="split" id="howto" style="background:var(--bg2)">
+  <div class="media rv"><img loading="lazy" src="assets/img/final.jpg" alt="兩盤百味滷味在暗色桌面上"></div>
+  <div class="text">
+    <span class="label rv">How to Enjoy<small>怎麼吃</small></span>
+    <h2 class="rv">不用開火，<br>微波 3 分鐘就上桌。</h2>
+    <ol class="steps rv">
+      <li><span class="n">01</span><h3>收到放冷凍</h3><p>未拆封 -18°C 以下，滷味類可以保存 1 年，想吃再拿。</p></li>
+      <li><span class="n">02</span><h3>加熱</h3><p>前一天移到冷藏解凍，微波約 1–2 分鐘；來不及解凍，直接微波約 1 分 30 秒到 3 分鐘，或隔水加熱約 10 分鐘。</p></li>
+      <li><span class="n">03</span><h3>倒進盤子</h3><p>撒點蔥絲，或淋上百味辣油，就是一盤下酒菜。</p></li>
+    </ol>
+    <p class="note rv">微波時間以 700–1000W 為準。鴨血豆腐建議拆封後倒進容器加熱。</p>
   </div>
+</section>
+
+<!-- ============ BUY ============ -->
+<section class="sec alt" id="buy" style="text-align:center">
+  <div class="wrap" style="display:grid;gap:24px;justify-items:center">
+    <span class="label rv">Order<small>購買方式</small></span>
+    <h2 class="rv">在 7-11 賣貨便下單，<br>冷凍店到店。</h2>
+    <p class="rv">選好品項，到離你最近的 7-11 取貨，全程冷凍配送。</p>
+    <div class="btns rv" style="justify-content:center"><a class="btn fill" href="https://myship.7-11.com.tw/general/detail/GM250926569503" target="_blank" rel="noopener" data-cta="buy-order">前往 7-11 賣貨便</a></div>
+  </div>
+</section>
+
+<!-- ============ FOR BUSINESS ============ -->
+<section class="biz-band" id="business">
+  <div class="t">
+    <span class="label rv">For Business<small>店家・企業採購</small></span>
+    <h2 class="rv">店家、企業採購，請點擊洽詢。</h2>
+    <p class="rv">已經有超過 30 間酒吧、餐酒館和 KTV 把百味放上菜單。批發、客製品項或企業團購，歡迎加 LINE 和我們聊聊。</p>
+  </div>
+  <a class="btn line rv" href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-biz-band">加 LINE 洽詢採購</a>
 </section>
 
 <footer>
-  <div class="wrap">
-    <span><b>主簿食品有限公司</b>（百味滷製）</span>
-    <span>統編 60740193</span>
-    <span>電話 02-2703-4708</span>
-    <span>新北市新店區中正路 508 號</span>
-    <span>圖片僅供參考，產品以實物為準</span>
-  </div>
+  <span><b>主簿食品有限公司</b>（百味滷製）</span>
+  <span>統編 60740193</span>
+  <span>電話 02-2703-4708</span>
+  <span>新北市新店區中正路 508 號</span>
+  <span>圖片僅供參考，產品以實物為準</span>
 </footer>
 
-<script>
-/* 追蹤：之後裝上 Meta Pixel，這段會把每個按鈕的點擊送成事件 */
-document.addEventListener("click", function(e){
-  var a = e.target.closest("[data-cta]"); if(!a) return;
-  if (window.fbq) fbq("trackCustom","CTAClick",{cta:a.getAttribute("data-cta")});
-});
-</script>
-
+<script src="assets/site.js"></script>
 </body>
 </html>
