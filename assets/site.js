@@ -32,3 +32,9 @@
     else fbq("trackCustom", "CTAClick", {cta:name});
   });
 })();
+
+/* 背景影片：使用者設定「減少動態」時停在第一格 */
+(function(){
+  if (!window.matchMedia || !matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.querySelectorAll(".bg-video").forEach(function(v){ v.removeAttribute("autoplay"); v.pause(); });
+})();
