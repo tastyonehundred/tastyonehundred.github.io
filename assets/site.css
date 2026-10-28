@@ -61,6 +61,14 @@ b,strong{font-weight:500;color:var(--head)}
 .split.bottom .text{justify-content:flex-end;padding-bottom:12vh}
 .split .text > p:not(.lead):not(.note){max-width:30em}
 
+/* 滿版：照片或影片鋪滿整個區塊，文字疊在上面；電腦版暗部在左、手機版暗部在下 */
+.full{position:relative;isolation:isolate;display:flex;align-items:center;min-height:100vh;min-height:100svh;overflow:hidden}
+.full .media{position:absolute;inset:0;z-index:-1;background:var(--bg2)}
+.full .media img,.full .media video{width:100%;height:100%;object-fit:cover}
+.full .media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,17,16,.9) 0%,rgba(17,17,16,.62) 42%,rgba(17,17,16,.12) 100%)}
+.full .text{padding:120px var(--pad);display:flex;flex-direction:column;justify-content:center;gap:28px;max-width:780px;text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.full .text > p:not(.lead):not(.note){max-width:30em}
+
 /* 一般區塊 */
 .sec{padding:clamp(96px,14vw,180px) var(--pad)}
 .sec.alt{background:var(--bg2)}
@@ -93,6 +101,9 @@ footer b{color:var(--text);font-weight:400}
   .split .text{padding:56px var(--pad) 88px;max-width:none}
   .split.bottom .text{padding-bottom:88px}
   .split.hero .media{aspect-ratio:4/5;max-height:78vh;width:100%}
+  .full{align-items:flex-end}
+  .full .media::after{background:linear-gradient(180deg,rgba(17,17,16,.3) 0%,rgba(17,17,16,.72) 45%,rgba(17,17,16,.94) 100%)}
+  .full .text{padding:120px var(--pad) 72px;max-width:none}
 }
 @media (max-width:560px){
   body{font-size:14.5px}
