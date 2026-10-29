@@ -65,6 +65,11 @@ b,strong{font-weight:500;color:var(--head)}
 .full{position:relative;isolation:isolate;display:flex;align-items:center;min-height:100vh;min-height:100svh;overflow:hidden}
 .full .media{position:absolute;inset:0;z-index:-1;background:var(--bg2)}
 .full .media img,.full .media video{width:100%;height:100%;object-fit:cover}
+/* 背景影片：畫面靠右（左邊是食材、被文字區蓋住），加一層會跳動的底片顆粒，讓 AI 影片看起來不那麼假 */
+#story .media video{object-position:100% 50%}
+.full .grain{position:absolute;inset:-50%;z-index:1;pointer-events:none;opacity:.16;mix-blend-mode:overlay;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:grain .6s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(0,0)}}
+@media (prefers-reduced-motion:reduce){.full .grain{animation:none}}
 .full .media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,17,16,.9) 0%,rgba(17,17,16,.62) 42%,rgba(17,17,16,.12) 100%)}
 .full .text{padding:120px var(--pad);display:flex;flex-direction:column;justify-content:center;gap:28px;max-width:780px;text-shadow:0 1px 12px rgba(0,0,0,.45)}
 .full .text > p:not(.lead):not(.note){max-width:30em}
