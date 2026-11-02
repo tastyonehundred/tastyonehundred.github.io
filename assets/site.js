@@ -38,3 +38,29 @@
   if (!window.matchMedia || !matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   document.querySelectorAll(".bg-video").forEach(function(v){ v.removeAttribute("autoplay"); v.pause(); });
 })();
+
+/* 首頁輪播：每 6 秒換一張；點圓點切換；設定「減少動態」時不自動換 */
+(function(){
+  document.querySelectorAll(".slides").forEach(function(box){
+    var imgs = box.querySelectorAll("img"), dots = box.parentNode.querySelector(".dots");
+    if (imgs.length < 2 || !dots) return;
+    var cur = 0, timer;
+    var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    imgs.forEach(function(img, i){
+      var b = document.createElement("button");
+      b.type = "button"; b.setAttribute("aria-label", "第 " + (i + 1) + " 張照片");
+      b.addEventListener("click", function(){ show(i); restart(); });
+      dots.appendChild(b);
+    });
+    function show(i){
+      imgs[cur].classList.remove("on"); dots.children[cur].removeAttribute("aria-current");
+      cur = i;
+      imgs[cur].classList.add("on"); dots.children[cur].setAttribute("aria-current", "true");
+    }
+    function restart(){
+      clearInterval(timer);
+      if (!still) timer = setInterval(function(){ show((cur + 1) % imgs.length); }, 6000);
+    }
+    show(0); restart();
+  });
+})();
