@@ -64,7 +64,14 @@ b,strong{font-weight:500;color:var(--head)}
 /* 滿版：照片或影片鋪滿整個區塊，文字疊在上面；電腦版暗部在左、手機版暗部在下 */
 .full{position:relative;isolation:isolate;display:flex;align-items:center;min-height:100vh;min-height:100svh;overflow:hidden}
 .full .media{position:absolute;inset:0;z-index:-1;background:var(--bg2)}
-.full .media img,.full .media video{width:100%;height:100%;object-fit:cover}
+.full .media img,.full .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* 輪播：照片疊在一起，class="on" 的那張淡入 */
+.slides img{opacity:0;transition:opacity 1.6s ease}
+.slides img.on{opacity:1}
+.dots{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:2;display:flex}
+.dots button{width:28px;height:28px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.dots button::before{content:"";width:6px;height:6px;border-radius:50%;background:rgba(235,228,216,.35);transition:background .3s}
+.dots button[aria-current="true"]::before{background:var(--head)}
 /* 背景影片：鍋子在畫面右邊、左邊留暗放字；手機版畫面較窄，往鍋子中間對齊。加一層會跳動的底片顆粒，讓 AI 影片看起來不那麼假 */
 #story .media video{object-position:100% 50%}
 @media (max-width:900px){#story .media video{object-position:70% 50%}}

@@ -13,18 +13,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
 <!-- 改了 site.css 或 site.js 之後，要把這裡和頁尾 site.js 的 ?v= 換成當天日期，不然訪客的瀏覽器會繼續用舊檔，版面會跑掉 -->
-<link rel="stylesheet" href="assets/site.css?v=20261102">
+<link rel="stylesheet" href="assets/site.css?v=20261102-2">
 <script>document.documentElement.className += " js";</script>
 <style>
 /* 首頁（一頁式，給一般消費者）：品牌故事 → 品項介紹 → 怎麼吃 → 怎麼買；店家採購導到 LINE */
+/* 選單列：一開始就是深色底（照設計稿） */
+.top{background:rgba(17,17,16,.92);backdrop-filter:blur(8px)}
 /* logo */
-.logo img{height:24px;width:auto}
+.logo img{height:34px;width:auto}
 .sign{font-family:var(--latin);font-style:italic;font-size:20px;color:var(--muted);letter-spacing:.04em;margin-top:8px}
 .spices{font-size:13px;color:var(--muted);letter-spacing:.3em;line-height:2.2}
 /* 頁尾店家採購（導到 LINE）：LINE 綠色 */
 .btn.line{border-color:#06c755;background:#06c755;color:#fff}
 .btn.line:hover{background:transparent;color:#06c755}
-.nav .biz{color:var(--head);border:1px solid var(--line);padding:2px 12px}
+/* 選單上的店家採購：米白實心按鈕 */
+.nav .biz{color:var(--bg);background:var(--head);border:1px solid var(--head);padding:6px 18px;transition:background .3s,color .3s}
+.nav .biz:hover{color:var(--head);background:transparent}
 
 /* 品項：像菜單一樣排列，不標價格 */
 .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(40px,4vw,64px) clamp(24px,3vw,40px)}
@@ -67,10 +71,10 @@
 <body>
 
 <header class="top">
-  <a class="logo" href="./" aria-label="百味滷制 首頁"><img src="assets/img/logo-mark.png" alt="百味滷制" width="337" height="69"></a>
+  <a class="logo" href="./" aria-label="百味滷制 首頁"><img src="assets/img/logo.png" alt="百味滷制 Tasty One Hundred" width="337" height="89"></a>
   <nav class="nav" aria-label="主選單">
     <a href="#story">品牌故事</a>
-    <a href="#menu">品項</a>
+    <a href="#menu">商品介紹</a>
     <a href="#howto">怎麼吃</a>
     <a href="#buy">購買</a>
     <a class="biz" href="#business" data-cta="biz-nav">店家・企業採購</a>
@@ -80,7 +84,7 @@
 <div class="menu" role="dialog" aria-label="選單">
   <button class="x">CLOSE ✕</button>
   <a href="#story">品牌故事</a>
-  <a href="#menu">品項</a>
+  <a href="#menu">商品介紹</a>
   <a href="#howto">怎麼吃</a>
   <a href="#buy">購買</a>
   <a href="#business" data-cta="biz-menu">店家・企業採購</a>
@@ -94,11 +98,17 @@
     <p class="rv">我們把一鍋老滷的功夫留在廚房裡，滷好、分裝、急速冷凍。回到家，加熱 3 分鐘，就是那一口味道。追劇、宵夜、配一杯酒都剛好。</p>
     <div class="btns rv">
       <a class="btn fill" href="https://myship.7-11.com.tw/general/detail/GM250926569503" target="_blank" rel="noopener" data-cta="buy-hero">直接購買</a>
-      <a class="btn fill" href="#business" data-cta="biz-hero">店家・企業採購</a>
-      <a class="btn" href="#menu" data-cta="menu-hero">看看品項</a>
+      <a class="btn" href="#business" data-cta="biz-hero">店家・企業採購</a>
+      <a class="btn" href="#menu" data-cta="menu-hero">商品介紹</a>
     </div>
   </div>
-  <div class="media rv"><img src="assets/img/hero.jpg" alt="筷子夾起一塊滷豆乾，石板上擺著滷味"></div>
+  <!-- 輪播：每 6 秒換一張，下方圓點可以切換。待確認：第 2、3 張先用現有照片，德婷從 Figma 匯出後再換 -->
+  <div class="media rv slides">
+    <img class="on" src="assets/img/hero.jpg" alt="筷子夾起一塊滷豆乾，石板上擺著滷味">
+    <img loading="lazy" src="assets/img/final.jpg" alt="兩盤百味滷味在暗色桌面上">
+    <img loading="lazy" src="assets/img/noodle.jpg" alt="筷子夾起百味拌麵">
+  </div>
+  <div class="dots" aria-label="切換首頁照片"></div>
 </section>
 
 <!-- ============ STORY ============ -->
@@ -120,7 +130,6 @@
 <section class="sec" id="menu">
   <div class="wrap">
     <div class="head">
-      <span class="label rv">Menu<small>品項</small></span>
       <h2 class="rv">一個人的宵夜，<br>一群人的下酒拼盤。</h2>
       <p class="rv">每一包都已經滷好、配好份量。從 2–3 人份的拼盤，到一個人剛好的小簡餐。</p>
     </div>
@@ -210,6 +219,6 @@
   <span>圖片僅供參考，產品以實物為準</span>
 </footer>
 
-<script src="assets/site.js?v=20261102"></script>
+<script src="assets/site.js?v=20261102-2"></script>
 </body>
 </html>
