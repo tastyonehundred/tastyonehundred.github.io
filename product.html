@@ -49,13 +49,19 @@
 .tabs button[aria-selected="true"]{color:var(--head);border-bottom-color:var(--head)}
 .tabs button:hover{color:var(--head)}
 .panel{display:grid;gap:14px;font-size:14.5px;min-height:150px}
-.panel[hidden]{display:none}
+[hidden]{display:none!important}
 .contents{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
-.contents li{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);color:var(--head)}
-.contents .n{font-family:var(--latin);font-style:italic;color:var(--accent);font-size:17px;min-width:1.6em}
-.panel .count{font-size:13px;color:var(--muted);letter-spacing:.14em}
+.contents li{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);color:var(--head)}
+.contents svg{width:16px;height:16px;flex:none;fill:none;stroke:var(--accent);stroke-width:1.3;stroke-linejoin:round}
 .panel ol{margin:0;padding-left:1.3em;display:grid;gap:8px}
 .panel h3{font-size:15px;letter-spacing:.16em;margin-top:6px}
+.store{font-size:13.5px;color:var(--muted)}
+.heat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.heat-card{border:1px solid var(--line);background:var(--bg2);padding:20px 20px 18px;display:grid;gap:12px;align-content:start}
+.heat-card h3{display:flex;align-items:center;gap:10px;margin:0;font-size:16px}
+.heat-card h3 svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.heat-card ol{font-size:14px}
+.heat-card .chk{font-size:12.5px;color:var(--accent);letter-spacing:.06em;border-top:1px solid var(--line);padding-top:10px}
 .spec{display:grid;grid-template-columns:auto 1fr;gap:10px 28px;margin:0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:13.5px}
 .spec dt{color:var(--muted);letter-spacing:.2em}
 .spec dd{margin:0;color:var(--head)}
@@ -132,7 +138,6 @@
       </div>
       <div class="panel" role="tabpanel" id="p-intro" aria-labelledby="t-intro"></div>
       <div class="panel" role="tabpanel" id="p-contents" aria-labelledby="t-contents" hidden>
-        <p class="count" id="count"></p>
         <ul class="contents" id="contents"></ul>
       </div>
       <div class="panel" role="tabpanel" id="p-heat" aria-labelledby="t-heat" hidden></div>
@@ -171,7 +176,7 @@
   <span>圖片僅供參考，產品以實物為準</span>
 </footer>
 
-<script src="assets/products.js?v=20261109"></script>
+<script src="assets/products.js?v=20261109-2"></script>
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
@@ -211,23 +216,39 @@
     /* 產品介紹 */
     p.intro.forEach(function(t){ $("p-intro").appendChild(el("p", null, t)); });
 
-    /* 內容物 */
-    $("count").textContent = p.count !== false && p.contents.length > 1 ? "一包 " + p.contents.length + " 種料" : "";
-    p.contents.forEach(function(c, i){
-      var li = el("li"); li.appendChild(el("span", "n", String(i + 1).padStart(2, "0"))); li.appendChild(el("span", null, c));
+    /* 內容物：每一樣前面一個八角小圖示 */
+    var ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,1.5 13.5,8.3 19.4,4.6 15.7,10.5 22.5,12 15.7,13.5 19.4,19.4 13.5,15.7 12,22.5 10.5,15.7 4.6,19.4 8.3,13.5 1.5,12 8.3,10.5 4.6,4.6 10.5,8.3"/><circle cx="12" cy="12" r="1.6"/></svg>';
+    p.contents.forEach(function(c){
+      var li = el("li"); li.innerHTML = ICON; li.appendChild(el("span", null, c));
       $("contents").appendChild(li);
     });
 
-    /* 保存與加熱（辣油改成「怎麼用」） */
+    /* 保存與加熱：每種加熱方式一張小卡片；辣油改成「怎麼用」 */
     var store = p.store != null ? p.store : STORE_DEFAULT;
+    var HEAT_ICON = {
+      "微波加熱": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="1.5"/><rect x="5" y="7.5" width="10" height="9" rx="1"/><path d="M18 9v.01M18 12v.01M18 15h0"/></svg>',
+      "隔水加熱": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10h18M5 10v7a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-7M1.5 10H3M21 10h1.5M9 3.5c-.8 1 .8 2 0 3M12 3c-.8 1 .8 2 0 3M15 3.5c-.8 1 .8 2 0 3"/></svg>'
+    };
     if (p.heatTitle) $("t-heat").textContent = p.heatTitle;
-    if (store) { $("p-heat").appendChild(el("h3", null, "保存")); $("p-heat").appendChild(el("p", null, store)); }
-    $("p-heat").appendChild(el("h3", null, p.heatTitle || "加熱"));
-    var ol = el("ol"); (p.heat || HEAT_DEFAULT).forEach(function(t){ ol.appendChild(el("li", null, t)); });
-    $("p-heat").appendChild(ol);
+    if (store) $("p-heat").appendChild(el("p", "store", "保存｜" + store));
+    if (p.use) {
+      var ul = el("ol"); p.use.forEach(function(t){ ul.appendChild(el("li", null, t)); });
+      $("p-heat").appendChild(ul);
+    } else {
+      var cards = el("div", "heat-cards");
+      (p.heat || HEAT_DEFAULT).forEach(function(h){
+        var c = el("div", "heat-card"), h3 = el("h3");
+        h3.innerHTML = HEAT_ICON[h.type] || ""; h3.appendChild(document.createTextNode(h.type));
+        c.appendChild(h3);
+        var ol = el("ol"); h.steps.forEach(function(t){ ol.appendChild(el("li", null, t)); }); c.appendChild(ol);
+        c.appendChild(el("p", "chk", HEAT_CHECK));
+        cards.appendChild(c);
+      });
+      $("p-heat").appendChild(cards);
+    }
 
     /* 規格 */
-    [["重量", p.weight], ["份量", p.serving], ["保存", store ? "冷凍 -18°C 以下" : ""], ["配送", "7-11 冷凍店到店"]].forEach(function(r){
+    [["重量", p.weight], ["份量", p.serving], ["保存", store ? "冷凍 -18°C 以下" : ""]].forEach(function(r){
       if (!r[1]) return;
       $("spec").appendChild(el("dt", null, r[0])); $("spec").appendChild(el("dd", null, r[1]));
     });
