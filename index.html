@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
 <!-- 改了 site.css 或 site.js 之後，要把這裡和頁尾 site.js 的 ?v= 換成當天日期，不然訪客的瀏覽器會繼續用舊檔，版面會跑掉 -->
-<link rel="stylesheet" href="assets/site.css?v=20261103">
+<link rel="stylesheet" href="assets/site.css?v=20261109">
 <script>document.documentElement.className += " js";</script>
 <style>
 /* 首頁（一頁式，給一般消費者）：品牌故事 → 品項介紹 → 怎麼吃 → 怎麼買；店家採購導到 LINE */
@@ -37,6 +37,14 @@
 .prod .ph img{width:100%;height:100%;object-fit:cover;object-position:var(--fp,50% 50%);transition:transform 1.4s ease}
 /* --fp：產品照的裁切中心。p- 開頭的照片德婷已經裁成 4:5、產品置中，不用另外設；辣油還是舊照片所以有設 */
 .prod:hover .ph img{transform:scale(1.03)}
+/* 整張卡片點下去到商品頁（連結在名稱上，用 ::after 撐滿整張卡片） */
+.prod{position:relative}
+.prod .go{color:inherit;text-decoration:none}
+.prod .go::after{content:"";position:absolute;inset:0;z-index:1}
+.prod:hover .go{color:var(--accent)}
+.prod .go:focus-visible{outline:none}
+.prod:has(.go:focus-visible){outline:1px solid var(--head);outline-offset:6px}
+.prod h3::after{content:" →";font-family:var(--latin);color:var(--muted);font-size:.8em}
 .badge{position:absolute;top:14px;left:14px;font-size:11px;letter-spacing:.24em;color:var(--head);border:1px solid rgba(235,228,216,.5);background:rgba(17,17,16,.55);padding:2px 10px}
 .prod h3{font-size:21px;letter-spacing:.14em}
 .prod .meta{font-size:12px;color:var(--muted);letter-spacing:.14em;border-bottom:1px solid var(--line);padding-bottom:12px}
@@ -141,38 +149,38 @@
     <div class="prods">
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/p-zmf.jpg" alt="豚金滷"><span class="badge">招牌</span></div>
-        <h3>豚金滷</h3><p class="meta">約 380±20g・2–3 人份</p>
+        <h3><a class="go" href="product.html?p=zmf">豚金滷</a></h3><p class="meta">約 380±20g・2–3 人份</p>
         <p class="desc">豬頰肉、鴨丸、蒟蒻丸、百頁、豆乾，一包五種料，每一樣都吸飽了滷汁。份量足足 2–3 人份，倒進盤子就是一整盤下酒菜，朋友來家裡喝一杯最剛好。</p>
       </article>
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/p-ssx.jpg" alt="小四喜"></div>
-        <h3>小四喜</h3><p class="meta">約 380±20g・2–3 人份</p>
+        <h3><a class="go" href="product.html?p=ssx">小四喜</a></h3><p class="meta">約 380±20g・2–3 人份</p>
         <p class="desc">豆乾、米血、杏鮑菇、百頁，四樣最經典的滷味一次到齊。豆乾越嚼越香、米血軟 Q，杏鮑菇咬下去還帶著湯汁，配一杯啤酒剛剛好。</p>
       </article>
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/p-zxf.jpg" alt="豬小福"></div>
-        <h3>豬小福</h3><p class="meta">約 190±10g・1 人份</p>
+        <h3><a class="go" href="product.html?p=zxf">豬小福</a></h3><p class="meta">約 190±10g・1 人份</p>
         <p class="desc">豚金滷的一人份。豬頰肉、香菇蒟蒻丸、百頁豆腐、豆乾一樣不少，份量剛好一個人吃完。加班回家、深夜嘴饞，熱一包就有。</p>
       </article>
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/p-hq.jpg" alt="厚切嫩豬"></div>
-        <h3>厚切嫩豬</h3><p class="meta">約 100±10g・單點</p>
+        <h3><a class="go" href="product.html?p=hq">厚切嫩豬</a></h3><p class="meta">約 100±10g・單點</p>
         <p class="desc">豬頰肉厚切滷透，肉質軟嫩、越嚼越香。我們已經幫你切好片，加熱後倒進盤子就是一盤下酒菜；配上沙拉也合適，中式西式都能變化，紅酒、啤酒都搭。</p>
       </article>
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/p-yx.jpg" alt="經典鴨血豆腐"></div>
-        <h3>經典鴨血豆腐</h3><p class="meta">約 450g・1 人份</p>
+        <h3><a class="go" href="product.html?p=yx">經典鴨血豆腐</a></h3><p class="meta">約 450g・1 人份</p>
         <p class="desc">鴨血滑嫩，豆腐吸飽湯汁，連湯帶料滿滿一整包。天冷的晚上熱一包，加一把麵，就是一份暖胃的宵夜。</p>
       </article>
       <article class="prod rv">
         <div class="ph"><img loading="lazy" src="assets/img/p-noodle.jpg" alt="百味拌麵"><span class="badge">限量供應</span></div>
-        <h3>百味拌麵</h3><p class="meta">約 350±20g・1 人份</p>
+        <h3><a class="go" href="product.html?p=noodle">百味拌麵</a></h3><p class="meta">約 350±20g・1 人份</p>
         <p class="desc">滷汁拌麵配上滷料，一碗就飽。深夜肚子餓的時候，不用出門、不用開火，3 分鐘就有一碗熱的。</p>
       </article>
       <article class="prod wide rv">
         <div class="ph"><img loading="lazy" src="assets/img/oil.jpg" alt="百味辣油" style="--fp:55% 58%"></div>
         <div style="display:grid;gap:14px">
-          <h3>百味辣油</h3><p class="meta">250ml 罐裝</p>
+          <h3><a class="go" href="product.html?p=oil">百味辣油</a></h3><p class="meta">250ml 罐裝</p>
           <p class="desc">數十種香料下鍋拌炒，把香氣都炒進油裡，留下最精華的那一匙紅油。</p>
           <p class="desc">入口先是香，辣只在後頭輕輕帶過，怕辣的人也能放心淋。滷味、水餃、拌麵加上一匙，味道立刻多一層。</p>
         </div>
@@ -225,6 +233,6 @@
   <span>圖片僅供參考，產品以實物為準</span>
 </footer>
 
-<script src="assets/site.js?v=20261103"></script>
+<script src="assets/site.js?v=20261109"></script>
 </body>
 </html>
