@@ -53,6 +53,10 @@
 .contents{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
 .contents li{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);color:var(--head)}
 .contents svg{width:26px;height:26px;flex:none;fill:none;stroke:var(--accent);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.contents.notes{grid-template-columns:1fr}
+.contents .nm{display:grid;gap:2px}
+.contents small{font-size:12.5px;color:var(--muted);letter-spacing:.08em}
+.contents-note{font-size:12.5px;color:var(--muted);letter-spacing:.08em;margin-top:4px}
 .panel ol{margin:0;padding-left:1.3em;display:grid;gap:8px}
 .panel h3{font-size:15px;letter-spacing:.16em;margin-top:6px}
 .store{font-size:13.5px;color:var(--muted)}
@@ -147,6 +151,7 @@
       <div class="panel" role="tabpanel" id="p-intro" aria-labelledby="t-intro"></div>
       <div class="panel" role="tabpanel" id="p-contents" aria-labelledby="t-contents" hidden>
         <ul class="contents" id="contents"></ul>
+        <p class="contents-note" id="contents-note" hidden></p>
       </div>
       <div class="panel" role="tabpanel" id="p-heat" aria-labelledby="t-heat" hidden></div>
 
@@ -184,7 +189,7 @@
   <span>圖片僅供參考，產品以實物為準</span>
 </footer>
 
-<script src="assets/products.js?v=20261109-4"></script>
+<script src="assets/products.js?v=20261109-6"></script>
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
@@ -241,6 +246,11 @@
       ["麵條", '<path d="M3.5 14h17a8.5 7 0 0 1-17 0z"/><path d="M8.5 2.5l6.2 8M12 2l5 8.5"/><path d="M14.5 10.5c-.9 1.1.9 2.2 0 3.5M15.9 10.5c-.9 1.1.9 2.2 0 3.5M17.3 10.5c-.9 1.1.9 2.2 0 3.5"/><path d="M5.5 14c1-1 2-1 3 0s2 1 3 0"/>'],
       ["鴨血", '<path d="M5 11.5L12 8l7 3.5-7 3.5z"/><path d="M5 11.5v6l7 3.5 7-3.5v-6M12 15v6"/><path d="M12 2.5c-1.2 1.6-2 2.5-2 3.4a2 2 0 0 0 4 0c0-.9-.8-1.8-2-3.4z"/>'],
       ["豆腐", '<path d="M5 8l7-3.5L19 8l-7 3.5z"/><path d="M5 8v8l7 3.5 7-3.5V8M12 11.5v8"/>'],
+      ["辛香料", '<polygon points="12,1.5 13.5,8.3 19.4,4.6 15.7,10.5 22.5,12 15.7,13.5 19.4,19.4 13.5,15.7 12,22.5 10.5,15.7 4.6,19.4 8.3,13.5 1.5,12 8.3,10.5 4.6,4.6 10.5,8.3"/><circle cx="12" cy="12" r="1.6"/>'],
+      ["花椒", '<path d="M6.5 7.5c1.3-.9 3.2-.9 4.5 0"/><path d="M8.7 7.3c0-2 .7-3.4 2.1-4.3"/><path d="M6.5 7.5c-.8 5.5 2.3 11 9.6 13 1.2.3 1.8-.9 1-1.7C12.6 15 11 11.5 11 7.5"/>'],
+      ["蔬菜", '<path d="M5 19C5 10 10.5 4.5 19.5 4.5 19.5 13.5 14 19 5 19z"/><path d="M5 19l9-9M9.5 14.5h-3M12 12v-3"/>'],
+      ["豆瓣醬", '<path d="M6.5 8.5h11l-1 10.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5z"/><path d="M5.5 8.5h13M8 5.5h8v3H8z"/><path d="M8.3 13.5c1.2-.8 2.4-.8 3.7 0s2.5.8 3.7 0"/>'],
+      ["香油", '<path d="M12 3c-3 4.2-5.5 7.3-5.5 10.5a5.5 5.5 0 0 0 11 0C17.5 10.3 15 7.2 12 3z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/>'],
       ["辣油", '<path d="M8 3.5h8v3H8z"/><path d="M7 6.5h10a1 1 0 0 1 1 1V19a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 19V7.5a1 1 0 0 1 1-1z"/><path d="M9.5 15.5c2-.3 4-1.5 5-4 .3 1.8-.5 4.8-4 5.4z"/>']
     ];
     var STAR = '<polygon points="12,1.5 13.5,8.3 19.4,4.6 15.7,10.5 22.5,12 15.7,13.5 19.4,19.4 13.5,15.7 12,22.5 10.5,15.7 4.6,19.4 8.3,13.5 1.5,12 8.3,10.5 4.6,4.6 10.5,8.3"/><circle cx="12" cy="12" r="1.6"/>';
@@ -248,8 +258,15 @@
       var hit = ING_ICONS.filter(function(r){ return name.indexOf(r[0]) > -1; })[0];
       return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (hit ? hit[1] : STAR) + '</svg>';
     }
+    var hasNote = p.contents.some(function(c){ return c.note; });
+    if (hasNote) $("contents").classList.add("notes");
+    if (p.contentsNote) { $("contents-note").textContent = p.contentsNote; $("contents-note").hidden = false; }
     p.contents.forEach(function(c){
-      var li = el("li"); li.innerHTML = ingIcon(c); li.appendChild(el("span", null, c));
+      if (typeof c === "string") c = {name: c};
+      var li = el("li"); li.innerHTML = ingIcon(c.name);
+      var nm = el("span", "nm"); nm.appendChild(el("span", null, c.name));
+      if (c.note) nm.appendChild(el("small", null, c.note));
+      li.appendChild(nm);
       $("contents").appendChild(li);
     });
 
