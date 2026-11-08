@@ -149,7 +149,7 @@
         <a class="btn fill" id="buy" href="https://myship.7-11.com.tw/general/detail/GM250926569503" target="_blank" rel="noopener" data-cta="buy-pdp">直接購買</a>
         <a class="btn" href="./#business" data-cta="biz-pdp">店家・企業採購</a>
       </div>
-      <p class="note">7-11 賣貨便下單，全程冷凍店到店。圖片僅供參考，產品以實物為準。</p>
+      <p class="note">圖片僅供參考，產品以實物為準。</p>
     </div>
   </div>
 
@@ -176,7 +176,7 @@
   <span>圖片僅供參考，產品以實物為準</span>
 </footer>
 
-<script src="assets/products.js?v=20261109-3"></script>
+<script src="assets/products.js?v=20261109-4"></script>
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
@@ -299,7 +299,7 @@
     if (p && x.id === p.id) return;
     var a = el("a", "card"); a.href = "product.html?p=" + x.id;
     var ph = el("div", "ph"); var im = el("img"); im.src = x.imgs[0]; im.alt = x.name; im.loading = "lazy"; ph.appendChild(im);
-    a.appendChild(ph); a.appendChild(el("b", null, x.name)); a.appendChild(el("small", null, x.weight + "・" + x.serving));
+    a.appendChild(ph); a.appendChild(el("b", null, x.name)); a.appendChild(el("small", null, x.short));
     $("others-grid").appendChild(a);
   });
 })();

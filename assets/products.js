@@ -1,6 +1,7 @@
 /* 百味滷製 商品資料（內容物、重量依 2026/09 DM 第 6 頁「產品售價內容表」）：商品頁（product.html）讀這裡。要改商品內容、照片、內容物，改這個檔案就好
    - id：網址用的代號，例如 product.html?p=zmf
    - imgs：第一張是主圖；放兩張以上，商品頁會出現縮圖可以切換
+   - short：簡短介紹，「也看看這些」卡片用；跟首頁商品卡片的介紹是同一句，改的時候兩邊一起改
    - contents：內容物，一行一樣
    - heat：加熱方式，每一種是一張小卡片（type 只能寫「微波加熱」或「隔水加熱」）；沒寫就用 HEAT_DEFAULT
    - use：不用加熱的商品（辣油）改寫使用方式
@@ -11,7 +12,7 @@ var HEAT_DEFAULT = [
   {type: "隔水加熱", steps: ["水滾後，不拆封整包放入鍋中。", "加熱 5 分鐘。"]}
 ];
 /* 每張加熱卡片下面都會出現這句 */
-var HEAT_CHECK = "出餐前請確認所有內容物都有熱透。";
+var HEAT_CHECK = "出餐前確認所有內容物都熱透。";
 var STORE_DEFAULT = "未拆封 -18°C 以下冷凍，可以保存 1 年。";
 
 var PRODUCTS = [
@@ -19,6 +20,7 @@ var PRODUCTS = [
     id: "zmf", name: "豚金滷", badge: "招牌",
     imgs: ["assets/img/p-zmf.jpg"],
     weight: "約 380±20g", serving: "2–3 人份",
+    short: "一包五種料，每一樣都吸飽了滷汁。朋友來家裡喝一杯最剛好。",
     lead: "一包五種料，每一樣都吸飽了滷汁。",
     intro: [
       "豬頰肉、鴨丸、香菇蒟蒻丸、百頁豆腐、豆乾，一包五種料，每一樣都吸飽了滷汁。",
@@ -30,6 +32,7 @@ var PRODUCTS = [
     id: "ssx", name: "小四喜",
     imgs: ["assets/img/p-ssx.jpg"],
     weight: "約 360±20g", serving: "2–3 人份",
+    short: "四樣最經典的滷味一次到齊，配一杯啤酒剛剛好。",
     lead: "四樣最經典的滷味，一次到齊。",
     intro: [
       "豆乾、米血、杏鮑菇、百頁，四樣最經典的滷味一次到齊。",
@@ -41,6 +44,7 @@ var PRODUCTS = [
     id: "zxf", name: "豬小福",
     imgs: ["assets/img/p-zxf.jpg"],
     weight: "約 190±10g", serving: "1 人份",
+    short: "豚金滷的一人份，加班回家、深夜嘴饞，熱一包就有。",
     lead: "豚金滷的一人份，份量剛好一個人吃完。",
     intro: [
       "豚金滷的一人份。豬頰肉、香菇蒟蒻丸、百頁豆腐、豆乾一樣不少，份量剛好一個人吃完。",
@@ -52,6 +56,7 @@ var PRODUCTS = [
     id: "hq", name: "厚切嫩豬",
     imgs: ["assets/img/p-hq.jpg"],
     weight: "約 100±10g", serving: "單點",
+    short: "豬頰肉厚切滷透、已經切好片，紅酒啤酒都搭。",
     lead: "豬頰肉厚切滷透，已經幫你切好片。",
     intro: [
       "豬頰肉厚切滷透，肉質軟嫩、越嚼越香。",
@@ -63,6 +68,7 @@ var PRODUCTS = [
     id: "yx", name: "經典鴨血豆腐",
     imgs: ["assets/img/p-yx.jpg"],
     weight: "約 450g", serving: "1 人份",
+    short: "鴨血滑嫩、豆腐吸飽湯汁，天冷最暖胃。",
     lead: "連湯帶料滿滿一整包，天冷最暖胃。",
     intro: [
       "鴨血滑嫩，豆腐吸飽湯汁，連湯帶料滿滿一整包。",
@@ -78,6 +84,7 @@ var PRODUCTS = [
     id: "noodle", name: "百味拌麵", badge: "限量供應",
     imgs: ["assets/img/p-noodle.jpg"],
     weight: "約 350±20g", serving: "1 人份",
+    short: "滷汁拌麵配上滷料，一碗就飽。",
     lead: "滷汁拌麵配上滷料，一碗就飽。",
     intro: [
       "麵條拌上百味滷汁，配豬頰肉、米血、雞翅、百頁和青花椰，一碗就飽。",
@@ -93,6 +100,7 @@ var PRODUCTS = [
     id: "oil", name: "百味辣油",
     imgs: ["assets/img/oil.jpg"],
     weight: "250ml", serving: "罐裝",
+    short: "入口先是香，辣只在後頭輕輕帶過。",
     lead: "入口先是香，辣只在後頭輕輕帶過。",
     intro: [
       "數十種香料下鍋拌炒，把香氣都炒進油裡，留下最精華的那一匙紅油。",
