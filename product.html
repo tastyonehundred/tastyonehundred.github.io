@@ -82,6 +82,13 @@
 
 .missing{display:grid;gap:20px;justify-items:start;padding:80px 0}
 
+/* 開頁淡入：路徑 → 照片 → 右邊資訊，依序慢慢浮現（商品內容和主圖準備好後才開始） */
+.js .crumb,.js .gallery,.js .info,.js .missing{opacity:0;transform:translateY(16px);transition:opacity 1.3s ease,transform 1.3s ease}
+.js .gallery{transition-delay:.15s}
+.js .info{transition-delay:.4s}
+.ready .crumb,.ready .gallery,.ready .info,.ready .missing{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .crumb,.js .gallery,.js .info,.js .missing{opacity:1;transform:none;transition:none}}
+
 @media (max-width:900px){
   .pdp{padding-top:96px}
   .pdp-grid{grid-template-columns:1fr}
@@ -163,8 +170,8 @@
 
 <section class="others" id="others">
   <div class="wrap">
-    <span class="label">More<small>其他商品</small></span>
-    <h2 style="margin-top:18px">也看看這些</h2>
+    <span class="label rv">More<small>其他商品</small></span>
+    <h2 class="rv" style="margin-top:18px">也看看這些</h2>
     <div class="others-grid" id="others-grid"></div>
   </div>
 </section>
@@ -278,6 +285,13 @@
     $("buy").setAttribute("data-cta", "buy-pdp-" + p.id);
   }
 
+  /* 開頁淡入：等主圖載好（最多 0.8 秒）再加上 .ready */
+  var shown = false;
+  function reveal(){ if (shown) return; shown = true; setTimeout(function(){ void document.body.offsetWidth; document.body.classList.add("ready"); }, 30); }
+  var mi = $("main-img");
+  if (!p || mi.complete) reveal(); else { mi.addEventListener("load", reveal); mi.addEventListener("error", reveal); }
+  setTimeout(reveal, 800);
+
   /* 分頁：點選或用左右鍵切換 */
   var tabs = [].slice.call(document.querySelectorAll('[role="tab"]'));
   function select(t){
@@ -298,7 +312,7 @@
   /* 其他商品：除了目前這一個，全部列出來 */
   PRODUCTS.forEach(function(x){
     if (p && x.id === p.id) return;
-    var a = el("a", "card"); a.href = "product.html?p=" + x.id;
+    var a = el("a", "card rv"); a.href = "product.html?p=" + x.id;
     var ph = el("div", "ph"); var im = el("img"); im.src = x.imgs[0]; im.alt = x.name; im.loading = "lazy"; ph.appendChild(im);
     a.appendChild(ph); a.appendChild(el("b", null, x.name)); a.appendChild(el("small", null, x.short));
     $("others-grid").appendChild(a);
