@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="百味滷製商品介紹：一鍋百種辛香料慢滷，急速冷凍，不用退冰，微波 50 秒就上桌。7-11 冷凍店到店。">
+<!-- ===== Meta Pixel：跟首頁一樣，把 Pixel 程式碼貼在這裡 ===== -->
+<title>商品介紹｜百味滷製</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
+<!-- 改了 site.css、site.js 或 products.js 之後，要把 ?v= 換成當天日期，不然訪客的瀏覽器會繼續用舊檔 -->
+<link rel="stylesheet" href="assets/site.css?v=20261109">
+<script>document.documentElement.className += " js";</script>
+<style>
+/* 商品頁（每個商品共用這一頁，網址 product.html?p=商品代號；內容在 assets/products.js）
+   版型參考 NEPENTHES 商品頁：左邊大圖＋縮圖，右邊名稱、分頁說明、規格、購買按鈕，最下方其他商品 */
+.top{background:rgba(17,17,16,.92);backdrop-filter:blur(8px)}
+.logo img{height:34px;width:auto}
+.nav .biz{color:var(--bg);background:var(--head);border:1px solid var(--head);padding:6px 18px;transition:background .3s,color .3s}
+.nav .biz:hover{color:var(--head);background:transparent}
+
+.pdp{padding:calc(110px + 2vw) var(--pad) clamp(72px,9vw,120px);max-width:1280px;margin:0 auto}
+.crumb{font-size:12px;letter-spacing:.16em;color:var(--muted);margin-bottom:clamp(24px,3vw,40px)}
+.crumb a{color:var(--muted);text-decoration:none}
+.crumb a:hover{color:var(--head)}
+.crumb span{color:var(--text)}
+.pdp-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,80px);align-items:start}
+
+/* 左：大圖＋縮圖 */
+.main-ph{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--bg2)}
+.main-ph img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:14px;left:14px;font-size:11px;letter-spacing:.24em;color:var(--head);border:1px solid rgba(235,228,216,.5);background:rgba(17,17,16,.55);padding:2px 10px}
+.thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:10px}
+.thumbs button{padding:0;border:1px solid transparent;background:none;cursor:pointer;aspect-ratio:4/5;overflow:hidden;opacity:.55;transition:opacity .3s,border-color .3s}
+.thumbs button[aria-current="true"],.thumbs button:hover{opacity:1;border-color:var(--line)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+
+/* 右：名稱、分頁、規格、按鈕；電腦版捲動時固定在畫面上 */
+.info{display:grid;gap:22px;position:sticky;top:110px}
+.info h1{font-size:clamp(28px,3vw,40px);letter-spacing:.14em;line-height:1.4}
+.info .meta{font-size:13px;color:var(--muted);letter-spacing:.16em;margin-top:-10px}
+.info .lead{font-family:var(--display);font-size:17px;color:var(--head);letter-spacing:.1em}
+.tabs{display:flex;gap:28px;border-bottom:1px solid var(--line)}
+.tabs button{background:none;border:0;border-bottom:1px solid transparent;margin-bottom:-1px;padding:0 0 12px;color:var(--muted);font:inherit;font-size:13px;letter-spacing:.2em;cursor:pointer;transition:color .2s,border-color .2s}
+.tabs button[aria-selected="true"]{color:var(--head);border-bottom-color:var(--head)}
+.tabs button:hover{color:var(--head)}
+.panel{display:grid;gap:14px;font-size:14.5px;min-height:150px}
+[hidden]{display:none!important}
+.contents{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.contents li{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);color:var(--head)}
+.contents svg{width:16px;height:16px;flex:none;fill:none;stroke:var(--accent);stroke-width:1.3;stroke-linejoin:round}
+.panel ol{margin:0;padding-left:1.3em;display:grid;gap:8px}
+.panel h3{font-size:15px;letter-spacing:.16em;margin-top:6px}
+.store{font-size:13.5px;color:var(--muted)}
+.heat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.heat-card{border:1px solid var(--line);background:var(--bg2);padding:20px 20px 18px;display:grid;gap:12px;align-content:start}
+.heat-card h3{display:flex;align-items:center;gap:10px;margin:0;font-size:16px}
+.heat-card h3 svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.heat-card ol{font-size:14px}
+.heat-card .chk{font-size:12.5px;color:var(--accent);letter-spacing:.06em;border-top:1px solid var(--line);padding-top:10px}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:10px 28px;margin:0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:13.5px}
+.spec dt{color:var(--muted);letter-spacing:.2em}
+.spec dd{margin:0;color:var(--head)}
+.info .btns{margin-top:0}
+.info .btns .btn{flex:1 1 200px}
+
+/* 其他商品 */
+.others{border-top:1px solid var(--line);padding:clamp(64px,8vw,104px) var(--pad);background:var(--bg2)}
+.others .wrap{max-width:1280px}
+.others h2{margin-bottom:clamp(28px,4vw,48px)}
+.others-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.card{display:grid;gap:10px;text-decoration:none;color:inherit}
+.card .ph{aspect-ratio:4/5;overflow:hidden;background:var(--bg)}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.card:hover img{transform:scale(1.04)}
+.card b{font-family:var(--display);font-size:15px;letter-spacing:.12em}
+.card small{font-size:12px;color:var(--muted);letter-spacing:.1em;margin-top:-6px}
+
+.missing{display:grid;gap:20px;justify-items:start;padding:80px 0}
+
+@media (max-width:900px){
+  .pdp{padding-top:96px}
+  .pdp-grid{grid-template-columns:1fr}
+  .info{position:static}
+  .others-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:44%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+  .card{scroll-snap-align:start}
+}
+@media (max-width:560px){
+  .contents{grid-template-columns:1fr}
+  .tabs{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="logo" href="./" aria-label="百味滷制 首頁"><img src="assets/img/logo.png" alt="百味滷制 Tasty One Hundred" width="337" height="89"></a>
+  <nav class="nav" aria-label="主選單">
+    <a href="./#story">品牌故事</a>
+    <a href="./#menu">商品介紹</a>
+    <a href="./#howto">怎麼吃</a>
+    <a href="./#buy">購買</a>
+    <a class="biz" href="./#business" data-cta="biz-nav">店家・企業採購</a>
+  </nav>
+  <button class="burger" aria-label="開啟選單"><i></i><i></i></button>
+</header>
+<div class="menu" role="dialog" aria-label="選單">
+  <button class="x">CLOSE ✕</button>
+  <a href="./#story">品牌故事</a>
+  <a href="./#menu">商品介紹</a>
+  <a href="./#howto">怎麼吃</a>
+  <a href="./#buy">購買</a>
+  <a href="./#business" data-cta="biz-menu">店家・企業採購</a>
+</div>
+
+<main class="pdp">
+  <nav class="crumb" aria-label="目前位置"><a href="./">首頁</a> ／ <a href="./#menu">商品介紹</a> ／ <span id="crumb-name"></span></nav>
+
+  <div class="pdp-grid" id="pdp">
+    <div class="gallery">
+      <div class="main-ph"><img id="main-img" src="" alt=""><span class="badge" id="badge" hidden></span></div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+
+    <div class="info">
+      <h1 id="name"></h1>
+      <p class="meta" id="meta"></p>
+      <p class="lead" id="lead"></p>
+
+      <div class="tabs" role="tablist" aria-label="商品資訊">
+        <button type="button" role="tab" id="t-intro" aria-controls="p-intro" aria-selected="true">產品介紹</button>
+        <button type="button" role="tab" id="t-contents" aria-controls="p-contents" aria-selected="false" tabindex="-1">內容物</button>
+        <button type="button" role="tab" id="t-heat" aria-controls="p-heat" aria-selected="false" tabindex="-1">保存與加熱</button>
+      </div>
+      <div class="panel" role="tabpanel" id="p-intro" aria-labelledby="t-intro"></div>
+      <div class="panel" role="tabpanel" id="p-contents" aria-labelledby="t-contents" hidden>
+        <ul class="contents" id="contents"></ul>
+      </div>
+      <div class="panel" role="tabpanel" id="p-heat" aria-labelledby="t-heat" hidden></div>
+
+      <dl class="spec" id="spec"></dl>
+
+      <!-- 待確認：賣貨便連結跟首頁同一個，賣場網址換了要一起改 -->
+      <div class="btns">
+        <a class="btn fill" id="buy" href="https://myship.7-11.com.tw/general/detail/GM250926569503" target="_blank" rel="noopener" data-cta="buy-pdp">直接購買</a>
+        <a class="btn" href="./#business" data-cta="biz-pdp">店家・企業採購</a>
+      </div>
+      <p class="note">7-11 賣貨便下單，全程冷凍店到店。圖片僅供參考，產品以實物為準。</p>
+    </div>
+  </div>
+
+  <div class="missing" id="missing" hidden>
+    <h1>找不到這個商品</h1>
+    <p>網址可能打錯了，或商品已經下架。</p>
+    <a class="btn" href="./#menu">看所有商品</a>
+  </div>
+</main>
+
+<section class="others" id="others">
+  <div class="wrap">
+    <span class="label">More<small>其他商品</small></span>
+    <h2 style="margin-top:18px">也看看這些</h2>
+    <div class="others-grid" id="others-grid"></div>
+  </div>
+</section>
+
+<footer>
+  <span><b>主簿食品有限公司</b>（百味滷製）</span>
+  <span>統編 60740193</span>
+  <span>電話 02-2703-4708</span>
+  <span>新北市新店區中正路 508 號</span>
+  <span>圖片僅供參考，產品以實物為準</span>
+</footer>
+
+<script src="assets/products.js?v=20261109-3"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  var id = new URLSearchParams(location.search).get("p");
+  var p = PRODUCTS.filter(function(x){ return x.id === id; })[0];
+
+  if (!p) {
+    $("pdp").hidden = true; $("missing").hidden = false;
+    $("crumb-name").textContent = "找不到商品";
+  } else {
+    document.title = p.name + "｜百味滷製";
+    $("crumb-name").textContent = p.name;
+    $("name").textContent = p.name;
+    $("meta").textContent = p.weight + "・" + p.serving;
+    $("lead").textContent = p.lead;
+    if (p.badge) { $("badge").textContent = p.badge; $("badge").hidden = false; }
+
+    /* 圖片：兩張以上才顯示縮圖 */
+    var main = $("main-img");
+    main.src = p.imgs[0]; main.alt = p.name;
+    if (p.imgs.length > 1) {
+      p.imgs.forEach(function(src, i){
+        var b = el("button"); b.type = "button"; b.setAttribute("aria-label", p.name + " 第 " + (i + 1) + " 張照片");
+        if (i === 0) b.setAttribute("aria-current", "true");
+        var im = el("img"); im.src = src; im.alt = ""; b.appendChild(im);
+        b.addEventListener("click", function(){
+          main.src = src;
+          [].forEach.call($("thumbs").children, function(t){ t.removeAttribute("aria-current"); });
+          b.setAttribute("aria-current", "true");
+        });
+        $("thumbs").appendChild(b);
+      });
+    }
+
+    /* 產品介紹 */
+    p.intro.forEach(function(t){ $("p-intro").appendChild(el("p", null, t)); });
+
+    /* 內容物：每一樣前面一個八角小圖示 */
+    var ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,1.5 13.5,8.3 19.4,4.6 15.7,10.5 22.5,12 15.7,13.5 19.4,19.4 13.5,15.7 12,22.5 10.5,15.7 4.6,19.4 8.3,13.5 1.5,12 8.3,10.5 4.6,4.6 10.5,8.3"/><circle cx="12" cy="12" r="1.6"/></svg>';
+    p.contents.forEach(function(c){
+      var li = el("li"); li.innerHTML = ICON; li.appendChild(el("span", null, c));
+      $("contents").appendChild(li);
+    });
+
+    /* 保存與加熱：每種加熱方式一張小卡片；辣油改成「怎麼用」 */
+    var store = p.store != null ? p.store : STORE_DEFAULT;
+    var HEAT_ICON = {
+      "微波加熱": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="1.5"/><rect x="5" y="7.5" width="10" height="9" rx="1"/><path d="M18 9v.01M18 12v.01M18 15h0"/></svg>',
+      "隔水加熱": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10h18M5 10v7a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-7M1.5 10H3M21 10h1.5M9 3.5c-.8 1 .8 2 0 3M12 3c-.8 1 .8 2 0 3M15 3.5c-.8 1 .8 2 0 3"/></svg>'
+    };
+    if (p.heatTitle) $("t-heat").textContent = p.heatTitle;
+    if (store) $("p-heat").appendChild(el("p", "store", "保存｜" + store));
+    if (p.use) {
+      var ul = el("ol"); p.use.forEach(function(t){ ul.appendChild(el("li", null, t)); });
+      $("p-heat").appendChild(ul);
+    } else {
+      var cards = el("div", "heat-cards");
+      (p.heat || HEAT_DEFAULT).forEach(function(h){
+        var c = el("div", "heat-card"), h3 = el("h3");
+        h3.innerHTML = HEAT_ICON[h.type] || ""; h3.appendChild(document.createTextNode(h.type));
+        c.appendChild(h3);
+        var ol = el("ol"); h.steps.forEach(function(t){ ol.appendChild(el("li", null, t)); }); c.appendChild(ol);
+        c.appendChild(el("p", "chk", HEAT_CHECK));
+        cards.appendChild(c);
+      });
+      $("p-heat").appendChild(cards);
+    }
+
+    /* 規格 */
+    [["重量", p.weight], ["份量", p.serving], ["保存", store ? "冷凍 -18°C 以下" : ""]].forEach(function(r){
+      if (!r[1]) return;
+      $("spec").appendChild(el("dt", null, r[0])); $("spec").appendChild(el("dd", null, r[1]));
+    });
+    $("buy").setAttribute("data-cta", "buy-pdp-" + p.id);
+  }
+
+  /* 分頁：點選或用左右鍵切換 */
+  var tabs = [].slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(t){
+    tabs.forEach(function(x){
+      var on = x === t;
+      x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1;
+      $(x.getAttribute("aria-controls")).hidden = !on;
+    });
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener("click", function(){ select(t); });
+    t.addEventListener("keydown", function(e){
+      var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (d) { var n = tabs[(i + d + tabs.length) % tabs.length]; select(n); n.focus(); }
+    });
+  });
+
+  /* 其他商品：除了目前這一個，全部列出來 */
+  PRODUCTS.forEach(function(x){
+    if (p && x.id === p.id) return;
+    var a = el("a", "card"); a.href = "product.html?p=" + x.id;
+    var ph = el("div", "ph"); var im = el("img"); im.src = x.imgs[0]; im.alt = x.name; im.loading = "lazy"; ph.appendChild(im);
+    a.appendChild(ph); a.appendChild(el("b", null, x.name)); a.appendChild(el("small", null, x.weight + "・" + x.serving));
+    $("others-grid").appendChild(a);
+  });
+})();
+</script>
+<script src="assets/site.js?v=20261109"></script>
+</body>
+</html>
