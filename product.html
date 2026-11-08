@@ -82,6 +82,13 @@
 
 .missing{display:grid;gap:20px;justify-items:start;padding:80px 0}
 
+/* 開頁淡入：路徑 → 照片 → 右邊資訊，依序慢慢浮現（商品內容和主圖準備好後才開始） */
+.js .crumb,.js .gallery,.js .info,.js .missing{opacity:0;transform:translateY(16px);transition:opacity 1.3s ease,transform 1.3s ease}
+.js .gallery{transition-delay:.15s}
+.js .info{transition-delay:.4s}
+.ready .crumb,.ready .gallery,.ready .info,.ready .missing{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .crumb,.js .gallery,.js .info,.js .missing{opacity:1;transform:none;transition:none}}
+
 @media (max-width:900px){
   .pdp{padding-top:96px}
   .pdp-grid{grid-template-columns:1fr}
@@ -104,7 +111,8 @@
     <a href="./#menu">商品介紹</a>
     <a href="./#howto">怎麼吃</a>
     <a href="./#buy">購買</a>
-    <a class="biz" href="./#business" data-cta="biz-nav">店家・企業採購</a>
+    <!-- 商品頁的「店家・企業採購」直接開官方 LINE（data-cta 用 line- 開頭，Meta Pixel 會記成「聯絡」） -->
+    <a class="biz" href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-biz-nav-pdp">店家・企業採購</a>
   </nav>
   <button class="burger" aria-label="開啟選單"><i></i><i></i></button>
 </header>
@@ -114,7 +122,7 @@
   <a href="./#menu">商品介紹</a>
   <a href="./#howto">怎麼吃</a>
   <a href="./#buy">購買</a>
-  <a href="./#business" data-cta="biz-menu">店家・企業採購</a>
+  <a href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-biz-menu-pdp">店家・企業採購</a>
 </div>
 
 <main class="pdp">
@@ -147,7 +155,7 @@
       <!-- 待確認：賣貨便連結跟首頁同一個，賣場網址換了要一起改 -->
       <div class="btns">
         <a class="btn fill" id="buy" href="https://myship.7-11.com.tw/general/detail/GM250926569503" target="_blank" rel="noopener" data-cta="buy-pdp">直接購買</a>
-        <a class="btn" href="./#business" data-cta="biz-pdp">店家・企業採購</a>
+        <a class="btn" href="https://lin.ee/7zMBIqU" target="_blank" rel="noopener" data-cta="line-biz-pdp">店家・企業採購</a>
       </div>
       <p class="note">圖片僅供參考，產品以實物為準。</p>
     </div>
@@ -162,8 +170,8 @@
 
 <section class="others" id="others">
   <div class="wrap">
-    <span class="label">More<small>其他商品</small></span>
-    <h2 style="margin-top:18px">也看看這些</h2>
+    <span class="label rv">More<small>其他商品</small></span>
+    <h2 class="rv" style="margin-top:18px">也看看這些</h2>
     <div class="others-grid" id="others-grid"></div>
   </div>
 </section>
@@ -277,6 +285,13 @@
     $("buy").setAttribute("data-cta", "buy-pdp-" + p.id);
   }
 
+  /* 開頁淡入：等主圖載好（最多 0.8 秒）再加上 .ready */
+  var shown = false;
+  function reveal(){ if (shown) return; shown = true; setTimeout(function(){ void document.body.offsetWidth; document.body.classList.add("ready"); }, 30); }
+  var mi = $("main-img");
+  if (!p || mi.complete) reveal(); else { mi.addEventListener("load", reveal); mi.addEventListener("error", reveal); }
+  setTimeout(reveal, 800);
+
   /* 分頁：點選或用左右鍵切換 */
   var tabs = [].slice.call(document.querySelectorAll('[role="tab"]'));
   function select(t){
@@ -297,7 +312,7 @@
   /* 其他商品：除了目前這一個，全部列出來 */
   PRODUCTS.forEach(function(x){
     if (p && x.id === p.id) return;
-    var a = el("a", "card"); a.href = "product.html?p=" + x.id;
+    var a = el("a", "card rv"); a.href = "product.html?p=" + x.id;
     var ph = el("div", "ph"); var im = el("img"); im.src = x.imgs[0]; im.alt = x.name; im.loading = "lazy"; ph.appendChild(im);
     a.appendChild(ph); a.appendChild(el("b", null, x.name)); a.appendChild(el("small", null, x.short));
     $("others-grid").appendChild(a);
