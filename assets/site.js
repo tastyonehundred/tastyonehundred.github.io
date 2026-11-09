@@ -33,10 +33,22 @@
   });
 })();
 
-/* 背景影片：使用者設定「減少動態」時停在第一格 */
+/* 背景影片：手機的低電量／省電模式會擋自動播放。
+   捲到畫面中時再試一次播放（離開畫面就暫停、省電）；還是被擋的話，等使用者第一次點擊或滑動時再播 */
 (function(){
-  if (!window.matchMedia || !matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  document.querySelectorAll(".bg-video").forEach(function(v){ v.removeAttribute("autoplay"); v.pause(); });
+  var vids = [].slice.call(document.querySelectorAll(".bg-video"));
+  if (!vids.length) return;
+  function tryPlay(v){ v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+  vids.forEach(function(v){
+    v.muted = true;
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if (en.isIntersecting) tryPlay(v); else v.pause(); });
+      }, {threshold: .1}).observe(v);
+    } else tryPlay(v);
+  });
+  function kick(){ vids.forEach(function(v){ if (v.paused && v.getBoundingClientRect().bottom > 0 && v.getBoundingClientRect().top < innerHeight) tryPlay(v); }); }
+  ["touchend", "click", "scroll"].forEach(function(t){ window.addEventListener(t, kick, {passive: true}); });
 })();
 
 /* 首頁輪播：每 6 秒換一張；點圓點切換；設定「減少動態」時不自動換 */
