@@ -91,7 +91,7 @@ b,strong{font-weight:500;color:var(--head)}
 /* 按鈕：細線、字距拉開 */
 .btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 30px;border:1px solid var(--head);color:var(--head);text-decoration:none;font-size:13px;letter-spacing:.24em;font-weight:400;transition:background .3s,color .3s}
-.btn:hover{background:var(--head);color:var(--bg)}
+.btn:hover,.btn:active{background:var(--head);color:var(--bg)}   /* 手機沒有滑過，用點擊（:active）變白底 */
 .btn.fill{background:var(--head);color:var(--bg)}
 .btn.fill:hover{background:transparent;color:var(--head)}
 .more{font-size:13px;letter-spacing:.24em;color:var(--head);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:6px;align-self:flex-start;transition:border-color .3s}

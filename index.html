@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
 <!-- 改了 site.css 或 site.js 之後，要把這裡和頁尾 site.js 的 ?v= 換成當天日期，不然訪客的瀏覽器會繼續用舊檔，版面會跑掉 -->
-<link rel="stylesheet" href="assets/site.css?v=20261109">
+<link rel="stylesheet" href="assets/site.css?v=20261111">
 <script>document.documentElement.className += " js";</script>
 <style>
 /* 首頁（一頁式，給一般消費者）：品牌故事 → 品項介紹 → 怎麼吃 → 怎麼買；店家採購導到 LINE */
@@ -26,9 +26,6 @@
 /* 頁尾店家採購（導到 LINE）：LINE 綠色 */
 .btn.line{border-color:#06c755;background:#06c755;color:#fff}
 .btn.line:hover{background:transparent;color:#06c755}
-/* 選單上的店家採購：米白實心按鈕 */
-.nav .biz{color:var(--bg);background:var(--head);border:1px solid var(--head);padding:6px 18px;transition:background .3s,color .3s}
-.nav .biz:hover{color:var(--head);background:transparent}
 
 /* 品項：像菜單一樣排列，不標價格 */
 .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(40px,4vw,64px) clamp(24px,3vw,40px)}
@@ -70,6 +67,12 @@
 .biz-band h2{font-size:clamp(22px,2.4vw,30px)}
 
 @media (max-width:900px){
+  /* 手機版首頁：輪播照片完整顯示在上方，不被文字遮住；圓點在照片下面，文字和按鈕接在後面 */
+  .hero{flex-direction:column;align-items:stretch;justify-content:flex-start;min-height:0;padding-top:84px}
+  .hero .media{position:relative;inset:auto;z-index:0;aspect-ratio:1/1;order:1}
+  .hero .media::after{display:none}
+  .hero .dots{position:static;transform:none;order:2;justify-content:center;margin-top:6px}
+  .hero .text{order:3;padding:20px var(--pad) 64px;text-shadow:none}
   /* 手機版怎麼吃：照片鋪滿當背景，加深色漸層，文字疊在照片上 */
   #howto{position:relative;isolation:isolate}
   #howto .media.whole{position:absolute;inset:0;z-index:-1;aspect-ratio:auto;display:block}
@@ -115,7 +118,7 @@
     <h1 class="rv">一百種香料，<br>熬成一口百味。</h1>
     <p class="rv">我們把一鍋老滷的功夫留在廚房裡，滷好、分裝、急速冷凍。回到家，不用退冰，微波 2 分鐘就是那一口味道。追劇、宵夜、配一杯酒都剛好。</p>
     <div class="btns rv">
-      <a class="btn fill" href="https://myship.7-11.com.tw/general/detail/GM250926569503" target="_blank" rel="noopener" data-cta="buy-hero">直接購買</a>
+      <a class="btn" href="https://myship.7-11.com.tw/general/detail/GM250926569503" target="_blank" rel="noopener" data-cta="buy-hero">直接購買</a>
       <a class="btn" href="#business" data-cta="biz-hero">店家・企業採購</a>
       <a class="btn" href="#menu" data-cta="menu-hero">商品介紹</a>
     </div>
